@@ -11,7 +11,7 @@
 <body class="flex items-center justify-center min-h-screen bg-gray-50">
     <div class="w-full max-w-md p-8 space-y-4 bg-white shadow-lg rounded-xl">
         <div class="flex justify-center">
-            <img src="{{ asset('images/logo.jpg') }}" alt="Logo" class="w-40 h-40 rounded-full">
+            <img src="{{ asset('images/logo.jpg') }}" alt="Logo" class="w-40 h-40">
         </div>
         <div class="space-y-2">
             <h2 class="text-2xl font-bold text-center text-gray-700 mt-0 mb-1 leading-tight">Create a New Account</h2>

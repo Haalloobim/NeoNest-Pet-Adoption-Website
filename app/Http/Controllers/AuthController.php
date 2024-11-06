@@ -8,15 +8,8 @@ use Illuminate\Http\Request;
 class AuthController extends Controller
 {
     public function register(Request $request)
-    {
-        if ($request->is_seller) {
-            $role = 'seller';
-        } 
-        
-        else {
-            $role = 'user';
-        }
-
+    {   
+        $role = $request->is_seller ? 'seller' : 'user';
         $request->validate([
             'name' => 'required|string',
             'email' => 'required|email|unique:users,email',
