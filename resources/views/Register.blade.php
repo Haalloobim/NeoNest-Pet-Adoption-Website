@@ -18,6 +18,17 @@
             <p class="text-sm text-center text-gray-500 mt-0 mb-4 leading-tight">Sign up and start shopping today!</p>
         </div>
 
+        <!-- Display all error -->
+        @if ($errors->any())
+            <div class="text-red-500">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+
         <form class="mt-8 space-y-6" action="{{ route('register') }}" method="POST">
             @csrf
 

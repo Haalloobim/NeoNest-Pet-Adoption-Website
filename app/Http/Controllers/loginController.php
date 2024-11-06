@@ -20,7 +20,7 @@ class loginController extends Controller
         $user = User::where('email', $request->email)->first();
 
         if (!$user || !Hash::check($request->password, $user->password)|| strlen($request->password) < 8) {
-            return redirect()->route('login')->with('error', 'Email atau password salah');
+            return redirect()->route('login')->with('error', 'Email or password is wrong');
         }
 
         Auth::login($user);
