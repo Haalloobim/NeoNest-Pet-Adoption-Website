@@ -9,7 +9,7 @@
 </head>
 
 <body class="flex items-center justify-center min-h-screen bg-gray-50">
-    <div class="w-full max-w-md p-8 space-y-4 bg-white shadow-lg rounded-xl">
+    <div class="w-full max-w-md p-8 space-y-2 bg-white shadow-lg rounded-xl">
         <div class="flex justify-center">
             <img src="{{ asset('images/logo.jpg') }}" alt="Logo" class="w-40 h-40">
         </div>
@@ -18,7 +18,6 @@
             <p class="text-sm text-center text-gray-500 mt-0 mb-4 leading-tight">Sign up and start shopping today!</p>
         </div>
 
-        <!-- Display all error -->
         @if ($errors->any())
             <div class="text-red-500 text-center">
                 <ul>
@@ -29,7 +28,7 @@
             </div>
         @endif
 
-        <form class="mt-8 space-y-6" action="{{ route('register') }}" method="POST">
+        <form class="mt-8 space-y-4" action="{{ route('register') }}" method="POST">
             @csrf
 
             <div>
@@ -66,6 +65,10 @@
                 class="w-full px-4 py-2 text-white bg-blue-600 rounded-lg hover:bg-blue-700 focus:bg-blue-800 focus:ring focus:ring-blue-300">
                 Sign Up
             </button>
+
+            <div class="text-sm text-center text-gray-700 mt-4">
+                Already have an account? <a href="{{ route('login') }}" class="text-blue-600 hover:underline">Log in</a>
+            </div>
         </form>
     </div>
 </body>

@@ -18,9 +18,8 @@
             <p class="text-sm text-center text-gray-500 mt-0 mb-4 leading-tight">Login to access your account</p>
         </div>
 
-        <!-- Display error message if login fails with red text -->
         @if (session('error'))
-            <div class="text-red-500">{{ session('error') }}</div>
+            <div class="text-red-500 text-center">{{ session('error') }}</div>
         @endif
 
         <form class="mt-8 space-y-6" action="{{ route('login') }}" method="POST">
@@ -42,6 +41,10 @@
                 class="w-full px-4 py-2 text-white bg-blue-600 rounded-lg hover:bg-blue-700 focus:bg-blue-800 focus:ring focus:ring-blue-300">
                 Log In
             </button>
+
+            <div class="text-sm text-center text-gray-700 mt-4">
+                Don't have an account? <a href="{{ route('register') }}" class="text-blue-600 hover:underline">Sign Up</a>
+            </div>
         </form>
     </div>
 </body>
