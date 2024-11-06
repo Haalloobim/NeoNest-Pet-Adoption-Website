@@ -18,11 +18,9 @@
             <p class="text-sm text-center text-gray-500 mt-0 mb-4 leading-tight">Login to access your account</p>
         </div>
 
-        <!-- Display error message if login fails -->
+        <!-- Display error message if login fails with red text -->
         @if (session('error'))
-            <div class="p-4 mb-4 text-sm text-red-600 bg-red-100 rounded-lg" role="alert">
-                {{ session('error') }}
-            </div>
+            <div class="text-red-500">{{ session('error') }}</div>
         @endif
 
         <form class="mt-8 space-y-6" action="{{ route('login') }}" method="POST">

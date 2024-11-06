@@ -14,12 +14,12 @@ class loginController extends Controller
     {
         $request->validate([
             'email' => 'required|email',
-            'password' => 'required|string|min:8',
+            'password' => 'required|string',
         ]);
 
         $user = User::where('email', $request->email)->first();
 
-        if (!$user || !Hash::check($request->password, $user->password)) {
+        if (!$user || !Hash::check($request->password, $user->password)|| strlen($request->password) < 8) {
             return redirect()->route('login')->with('error', 'Email atau password salah');
         }
 
