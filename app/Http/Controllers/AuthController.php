@@ -38,4 +38,10 @@ class AuthController extends Controller
             return Auth::user()->role === 'seller' ? redirect()->route('seller.dashboard') : redirect()->route('user.dashboard');
         }
     }
+
+    public function logout()
+    {
+        Auth::logout();
+        return redirect()->route('login');
+    }
 }

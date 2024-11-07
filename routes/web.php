@@ -23,4 +23,15 @@ Route::get('/dashboard', function () {
     }
 })->middleware('auth')->name('seller.dashboard');
 
+Route::get(('/dashboard'), function () {
+    if (Auth::user()->role == 'user') {
+        return view('UserDashboard');
+    }
+})->middleware('auth')->name('user.dashboard');
+
+Route::post('/logout', function () {
+    Auth::logout();
+    return redirect()->route('login');
+})->name('logout');
+
 Route::post('/upload/product', [ProductController::class, 'upload'])->middleware('auth')->name('product.upload');
