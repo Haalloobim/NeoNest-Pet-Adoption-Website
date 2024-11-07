@@ -14,7 +14,8 @@ return new class extends Migration
             $table->decimal('price', 10, 2);
             $table->text('description')->nullable();
             $table->string('category');
-            $table->string('image')->nullable();
+            $table->string('species');
+            $table->string('image_path')->nullable();
             $table->string('seller_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });

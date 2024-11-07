@@ -31,23 +31,48 @@ class ProductController extends Controller
 
         $context  = stream_context_create($options);
         $result = json_decode(file_get_contents($url, false, $context), true);
-        dd($result);
+
+        if (!isset($result['predictions'][0])) {
+            return redirect()->route('dashboard')->with('error', 'Image not recognized! Please try again.');
+        }
+        $resData = [$result, $path]; 
+        return $resData;
+        // Further processing if the prediction is set
     }
 
     public function upload(Request $request)
     {
         $image = $request->file('image');
-        $cat = $this->detect($image);
-        dd($cat);
-        Product::create([
-            'name' => $request->name,
-            'price' => $request->price,
-            'description' => $request->description,
-            'category' => $request->category,
-            'image' => $image->hashName(),
-            'seller_id' => Auth::id(),
-        ]);
+        $petResult = $this->detect($image);
+        // dd($petResult);
+        if ($petResult instanceof \Illuminate\Http\RedirectResponse) {
+            return redirect()->route('dashboard')->with('error', 'Image not recognized! Please try again.');
+        }
 
+        $name = $request->input('name');
+        $price = $request->input('price');
+        $description = $request->input('description');
+
+        dd($petResult);
+        $res1 = $petResult[0];
+        $imagePath = $petResult[1];
+
+        $class = $res1['predictions'][0]['class'];
+        $parsed = explode('-', $class);
+        $category = $parsed[0];
+        $species = str_replace("_", " ", $parsed[1]);
+
+        $data = [
+            'name' => $name,
+            'price' => $price,
+            'description' => $description,
+            'category' => $category,
+            'species' => $species,
+            'image_path' => $imagePath,
+            'seller_id' => Auth::id(),
+        ];
+ 
+        Product::create($data);
 
         return redirect()->route('dashboard')->with('success', 'Product uploaded successfully!');
     }

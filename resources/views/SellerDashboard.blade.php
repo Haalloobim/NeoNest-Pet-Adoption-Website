@@ -12,6 +12,7 @@
     <div class="w-full max-w-md p-8 space-y-4 bg-white shadow-lg rounded-xl">
         <h2 class="text-2xl font-bold text-center text-gray-700 mb-6">Upload New Pet</h2>
 
+        <!-- Success or Error Message -->
         @if (session('success'))
             <div class="text-green-600 font-medium text-center">{{ session('success') }}</div>
         @elseif (session('error'))
@@ -39,16 +40,6 @@
                     class="block w-full px-4 py-2 mt-1 text-gray-700 bg-gray-50 border border-gray-300 rounded-lg focus:border-blue-500 focus:ring-blue-500"></textarea>
             </div>
 
-            <div>
-                <label for="category" class="block text-sm font-medium text-gray-700">Category</label>
-                <select id="category" name="category" required
-                    class="block w-full px-4 py-2 mt-1 text-gray-700 bg-gray-50 border border-gray-300 rounded-lg focus:border-blue-500 focus:ring-blue-500">
-                    <option value="dogs">Dogs</option>
-                    <option value="cats">Cats</option>
-                    <option value="other">Other</option>
-                </select>
-            </div>
-
             <div id="other-category-field" style="display: none;">
                 <label for="other_category" class="block text-sm font-medium text-gray-700">Specify Category</label>
                 <input type="text" id="other_category" name="other_category"
@@ -68,16 +59,7 @@
         </form>
     </div>
 
-    <script>
-        document.getElementById('category').addEventListener('change', function() {
-            const otherCategoryField = document.getElementById('other-category-field');
-            if (this.value === 'other') {
-                otherCategoryField.style.display = 'block';
-            } else {
-                otherCategoryField.style.display = 'none';
-            }
-        });
-    </script>
+    
 </body>
 
 </html>
