@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class ProductController extends Controller
-{   
+{
     public function upload(Request $request)
     {
         $image = $request->file('image');
@@ -27,6 +27,6 @@ class ProductController extends Controller
             'image' => $image->hashName(),
             'seller_id' => Auth::id(),
         ]);
-        return redirect()->route('seller.dashboard')->with('success', 'Product uploaded successfully!');
+        return redirect()->route('dashboard')->with('success', 'Product uploaded successfully!');
     }
 }

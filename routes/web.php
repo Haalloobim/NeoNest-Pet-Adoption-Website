@@ -18,16 +18,15 @@ Route::get('/login', function () {
 Route::post('/login', [AuthController::class, 'login']);
 
 Route::get('/dashboard', function () {
-    if (Auth::user()->role == 'seller') {
-        return view('SellerDashboard');
+    if (Auth::check()) {
+        if (Auth::user()->role == 'seller') {
+            return view('SellerDashboard');
+        } elseif (Auth::user()->role == 'user') {
+            return view('UserDashboard');
+        }
     }
-})->middleware('auth')->name('seller.dashboard');
-
-Route::get(('/dashboard'), function () {
-    if (Auth::user()->role == 'user') {
-        return view('UserDashboard');
-    }
-})->middleware('auth')->name('user.dashboard');
+    return redirect()->route('login');
+})->middleware('auth')->name('dashboard');
 
 Route::post('/logout', function () {
     Auth::logout();

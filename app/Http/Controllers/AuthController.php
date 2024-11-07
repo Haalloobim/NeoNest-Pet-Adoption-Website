@@ -35,7 +35,7 @@ class AuthController extends Controller
         ]);
 
         if(Auth::attempt($request->only('email', 'password'))) {
-            return Auth::user()->role === 'seller' ? redirect()->route('seller.dashboard') : redirect()->route('user.dashboard');
+            return redirect()->route('dashboard'); // Redirect to the general dashboard route
         }
     }
 
