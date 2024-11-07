@@ -49,6 +49,6 @@ class ProductController extends Controller
         ]);
 
 
-        return redirect()->route('seller.dashboard')->with('success', 'Product uploaded successfully!');
+        return redirect()->route('dashboard')->with('success', 'Product uploaded successfully!');
     }
 }
