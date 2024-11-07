@@ -53,7 +53,7 @@ class ProductController extends Controller
         $price = $request->input('price');
         $description = $request->input('description');
 
-        dd($petResult);
+        // dd($petResult);
         $res1 = $petResult[0];
         $imagePath = $petResult[1];
 
@@ -75,5 +75,30 @@ class ProductController extends Controller
         Product::create($data);
 
         return redirect()->route('dashboard')->with('success', 'Product uploaded successfully!');
+    }
+
+    public function index()
+    {
+        $products = Product::where('seller_id', Auth::id())->get();
+        return view('products.index', compact('products'));
+    }
+
+    public function uploadProduct(Product $product)
+    {
+
+        if((Auth::user()->role != 'seller') ) {
+            return redirect()->route('dashboard')->with('error', 'Unauthorized access!');
+        }
+        return view('SellerUpload');
+    }
+
+    public function ProductDetails(Product $product)
+    {
+
+        // dd(Auth::id(), $product->seller_id);
+        if (Auth::id() != $product->seller_id) {
+            return redirect()->route('dashboard')->with('error', 'You are not authorized to view this product.');
+        }
+        return view('ProductDetails', compact('product'));
     }
 }
