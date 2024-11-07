@@ -17,16 +17,6 @@ Route::get('/login', function () {
 
 Route::post('/login', [AuthController::class, 'login']);
 
-Route::get('/dashboard', function () {
-    if (Auth::check()) {
-        if (Auth::user()->role == 'seller') {
-            return view('SellerDashboard');
-        } elseif (Auth::user()->role == 'user') {
-            return view('UserDashboard');
-        }
-    }
-    return redirect()->route('login');
-})->middleware('auth')->name('dashboard');
 
 Route::post('/logout', function () {
     Auth::logout();
@@ -34,3 +24,11 @@ Route::post('/logout', function () {
 })->name('logout');
 
 Route::post('/upload/product', [ProductController::class, 'upload'])->middleware('auth')->name('product.upload');
+
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/dashboard', [AuthController::class, 'dashboard'])->name('dashboard');
+    Route::get('/products/{product}', [ProductController::class, 'ProductDetails'])->name('product.details');
+
+    Route::get('/uploads', [ProductController::class, 'uploadProduct'])->name('uploads');
+});

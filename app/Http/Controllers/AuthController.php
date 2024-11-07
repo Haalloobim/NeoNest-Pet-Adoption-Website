@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Product;
 
 class AuthController extends Controller
 {
@@ -42,6 +43,20 @@ class AuthController extends Controller
     public function logout()
     {
         Auth::logout();
+        return redirect()->route('login');
+    }
+
+    public function dashboard()
+    {
+        $user = Auth::user();
+        $products = Product::where('seller_id', $user->id)->get();
+        if (Auth::check()) {
+            if (Auth::user()->role == 'seller') {
+                return view('SellerDashboard', compact('user', 'products'));
+            } elseif (Auth::user()->role == 'user') {
+                return view('UserDashboard', compact('user', 'products'));
+            }
+        }
         return redirect()->route('login');
     }
 }
