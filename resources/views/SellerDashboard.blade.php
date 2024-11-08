@@ -85,16 +85,27 @@
             <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
                 @foreach ($products as $product)
                 <a href="{{ route('product.details', $product->id) }}" class="block">
-                    <div class="bg-white shadow-lg rounded-lg p-4 hover:shadow-xl transition-shadow">
+                    <div class="bg-white shadow-lg rounded-lg p-4 hover:shadow-xl transition-shadow overflow-hidden">
+                        <!-- Category Tag -->
+                        
                         <img src="{{ asset('storage/' . $product->image_path) }}" alt="{{ $product->name }}" class="w-full h-48 object-cover rounded-lg mb-4">
+                        <div class="flex space-x-2 mb-2">
+                            <span class="bg-gradient-to-r from-teal-500 to-teal-600 text-white text-xs font-semibold rounded-full px-3 py-1">
+                                {{ ucwords($product->category) }}
+                            </span>
+                            <span class="bg-gradient-to-r from-amber-500 to-amber-600 text-white text-xs font-semibold rounded-full px-3 py-1">
+                                {{ ucwords($product->species) }}
+                            </span>
+                            
+                        </div>
                         <h3 class="text-lg font-semibold text-gray-800">{{ $product->name }}</h3>
                         <p class="text-gray-500 mb-2">Rp {{ number_format($product->price, 0, ',', '.') }}</p>
-                        <p class="text-gray-600 mb-4">{{ Str::limit($product->description, 60) }}</p>
+                        {{-- <p class="text-gray-600 mb-4">{{ Str::limit($product->description, 60) }}</p> --}}
                     </div>
                 </a>
                 @endforeach
             </div>
-
+    
             @if ($products->isEmpty())
             <p class="text-center text-gray-500 mt-10">You have no products listed for sale.</p>
             @endif
