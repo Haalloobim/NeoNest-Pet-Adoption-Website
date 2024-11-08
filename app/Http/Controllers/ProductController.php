@@ -77,12 +77,6 @@ class ProductController extends Controller
         return redirect()->route('dashboard')->with('success', 'Product uploaded successfully!');
     }
 
-    public function index()
-    {
-        $products = Product::where('seller_id', Auth::id())->get();
-        return view('products.index', compact('products'));
-    }
-
     public function uploadProduct(Product $product)
     {
 
@@ -92,10 +86,8 @@ class ProductController extends Controller
         return view('SellerUpload');
     }
 
-    public function ProductDetails(Product $product)
+    public function productDetail(Product $product)
     {
-
-        // dd(Auth::id(), $product->seller_id);
         if (Auth::id() != $product->seller_id) {
             return redirect()->route('dashboard')->with('error', 'You are not authorized to view this product.');
         }

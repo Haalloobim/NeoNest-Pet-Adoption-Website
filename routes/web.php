@@ -17,18 +17,10 @@ Route::get('/login', function () {
 
 Route::post('/login', [AuthController::class, 'login']);
 
-
-Route::post('/logout', function () {
-    Auth::logout();
-    return redirect()->route('login');
-})->name('logout');
-
-Route::post('/upload/product', [ProductController::class, 'upload'])->middleware('auth')->name('product.upload');
-
-
 Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', [AuthController::class, 'dashboard'])->name('dashboard');
-    Route::get('/products/{product}', [ProductController::class, 'ProductDetails'])->name('product.details');
-
-    Route::get('/uploads', [ProductController::class, 'uploadProduct'])->name('uploads');
+    Route::get('/product/{product}', [ProductController::class, 'productDetail'])->name('product.details');
+    Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
+    Route::get('/upload', [ProductController::class, 'uploadProduct'])->name('upload');
+    Route::post('/upload/product', [ProductController::class, 'upload'])->name('product.upload');
 });
