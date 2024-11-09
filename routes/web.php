@@ -23,4 +23,6 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
     Route::get('/upload', [ProductController::class, 'uploadProduct'])->name('upload');
     Route::post('/upload/product', [ProductController::class, 'upload'])->name('product.upload');
+    Route::post('/filter-products', [ProductController::class, 'filterProducts'])->name('products.filter');
+
 });

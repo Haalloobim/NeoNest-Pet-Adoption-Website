@@ -35,7 +35,7 @@ class ProductController extends Controller
         if (!isset($result['predictions'][0])) {
             return redirect()->route('dashboard')->with('error', 'Image not recognized! Please try again.');
         }
-        $resData = [$result, $path]; 
+        $resData = [$result, $path];
         return $resData;
         // Further processing if the prediction is set
     }
@@ -71,7 +71,7 @@ class ProductController extends Controller
             'image_path' => $imagePath,
             'seller_id' => Auth::id(),
         ];
- 
+
         Product::create($data);
 
         return redirect()->route('dashboard')->with('success', 'Product uploaded successfully!');
@@ -80,7 +80,7 @@ class ProductController extends Controller
     public function uploadProduct(Product $product)
     {
 
-        if((Auth::user()->role != 'seller') ) {
+        if ((Auth::user()->role != 'seller')) {
             return redirect()->route('dashboard')->with('error', 'Unauthorized access!');
         }
         return view('SellerUpload');
@@ -92,5 +92,31 @@ class ProductController extends Controller
             return redirect()->route('dashboard')->with('error', 'You are not authorized to view this product.');
         }
         return view('ProductDetails', compact('product'));
+    }
+
+    public function filterProducts(Request $request)
+    {
+        $query = Product::query();
+
+        if ($request->sortBy === 'price_asc') {
+            $query->orderBy('price', 'asc');
+        } elseif ($request->sortBy === 'price_desc') {
+            $query->orderBy('price', 'desc');
+        }
+
+        if ($request->categories) {
+            $query->whereIn('category', $request->categories);
+        }
+
+        if ($request->priceFrom) {
+            $query->where('price', '>=', $request->priceFrom);
+        }
+        if ($request->priceTo) {
+            $query->where('price', '<=', $request->priceTo);
+        }
+
+        $products = $query->get();
+
+        return response()->json(['products' => $products]);
     }
 }
