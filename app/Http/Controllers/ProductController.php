@@ -94,6 +94,33 @@ class ProductController extends Controller
         return view('ProductDetails', compact('product'));
     }
 
+    public function deleteProduct(Product $product)
+    {
+        if (Auth::id() != $product->seller_id) {
+            return redirect()->route('dashboard')->with('error', 'You are not authorized to delete this product.');
+        }
+        $product->delete();
+        return redirect()->route('dashboard')->with('success', 'Product deleted successfully!');
+    }
+
+    public function editProduct(Product $product)
+    {
+        if (Auth::id() != $product->seller_id) {
+            return redirect()->route('dashboard')->with('error', 'You are not authorized to edit this product.');
+        }
+        return view('ProductEdit', compact('product'));
+    }
+
+    public function updateProduct(Request $request, Product $product)
+    {
+        if (Auth::id() != $product->seller_id) {
+            return redirect()->route('dashboard')->with('error', 'You are not authorized to edit this product.');
+        }
+
+        $product->update($request->all());
+        return redirect()->route('dashboard')->with('success', 'Product updated successfully!');
+    }
+
     public function filterProducts(Request $request)
     {
         $query = Product::query();
@@ -108,13 +135,17 @@ class ProductController extends Controller
             $query->whereIn('category', $request->categories);
         }
 
-        if ($request->priceFrom) {
-            $query->where('price', '>=', $request->priceFrom);
+        // dd($request->priceRanges);
+        if ($request->has('priceFilters')) {
+            $query->where(function ($query) use ($request) {
+                foreach ($request->priceFilters as $range) {
+                    if (isset($range['priceFrom']) && isset($range['priceTo'])) {
+                        $query->orWhereBetween('price', [$range['priceFrom'], $range['priceTo']]);
+                    }
+                }
+            });
         }
-        if ($request->priceTo) {
-            $query->where('price', '<=', $request->priceTo);
-        }
-
+        
         $products = $query->get();
 
         return response()->json(['products' => $products]);
