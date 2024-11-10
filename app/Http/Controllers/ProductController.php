@@ -69,6 +69,7 @@ class ProductController extends Controller
             'category' => $category,
             'species' => $species,
             'image_path' => $imagePath,
+            'product_status' => 'available',
             'seller_id' => Auth::id(),
         ];
 

@@ -13,6 +13,7 @@ class Product extends Model
         'category',
         'species',
         'image_path',
+        'product_status',
         'seller_id',
     ];
 

@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('category');
             $table->string('species');
             $table->string('image_path')->nullable();
+            $table->enum('product_status', ['available', 'sold'])->default('available');
             $table->string('seller_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });

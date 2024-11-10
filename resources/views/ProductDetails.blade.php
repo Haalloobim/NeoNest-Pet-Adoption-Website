@@ -58,17 +58,28 @@
             <div class="p-8 text-center">
                 <!-- Product Title -->
                 <h2 class="text-3xl font-semibold text-gray-900">{{ $product->name }}</h2>
-                <p class="text-xl text-slate-600 font-bold mt-2">Rp {{ number_format($product->price, 0, ',', '.') }}
+                <p class="text-xl text-slate-600 font-bold mt-1">Rp {{ number_format($product->price, 0, ',', '.') }}
                 </p>
+                <span
+                    class="inline-block mt-2 px-4 py-1 text-sm font-semibold text-white rounded-full 
+        {{ $product->product_status === 'available' ? 'bg-gradient-to-r from-green-500 to-lime-600' : 'bg-gradient-to-r from-red-500 to-orange-500' }}">
+                    {{ ucwords($product->product_status) }}
+                </span>
 
                 <!-- Separator -->
-                <hr class="my-6 border-gray-300">
+                <div class="flex justify-center items-center">
+                    <hr class="my-6 border-gray-300 w-[85%]">
+                </div>
+
 
                 <!-- Product Description -->
                 <p class="text-gray-600 leading-relaxed">{{ $product->description }}</p>
 
                 <!-- Separator -->
-                <hr class="my-6 border-gray-300">
+                <div class="flex justify-center items-center">
+                    <hr class="my-6 border-gray-300 w-[85%]">
+                </div>
+
 
                 <!-- Category and Species -->
                 <div class="flex justify-center space-x-16 mt-4">
@@ -83,7 +94,10 @@
                 </div>
 
                 <!-- Separator -->
-                <hr class="my-6 border-gray-300">
+                <div class="flex justify-center items-center">
+                    <hr class="my-6 border-gray-300 w-[85%]">
+                </div>
+
 
                 <!-- Back Button -->
                 <div class="mt-8 flex flex-row gap-x-5 justify-center items-center">
@@ -100,7 +114,7 @@
                         </a>
                     </div>
                     <div>
-                        
+
                         <form action="{{ route('product.delete', $product->id) }}" method="POST">
                             @csrf
                             @method('DELETE')
