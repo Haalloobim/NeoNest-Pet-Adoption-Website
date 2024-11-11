@@ -20,7 +20,7 @@ Route::post('/login', [AuthController::class, 'login']);
 Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', [AuthController::class, 'dashboard'])->name('dashboard');
     Route::get('/product/{product}', [ProductController::class, 'productDetail'])->name('product.details');
-    Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
+    Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
     Route::get('/upload', [ProductController::class, 'uploadProduct'])->name('upload');
     Route::post('/upload/product', [ProductController::class, 'upload'])->name('product.upload');
     Route::post('/filter-products', [ProductController::class, 'filterProducts'])->name('products.filter');

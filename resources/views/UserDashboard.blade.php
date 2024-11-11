@@ -10,7 +10,7 @@
 
 <body class="bg-gray-50">
     <!-- Include the navbar -->
-    @include('navbar.navbar')
+    <x-navbar title="Dashboard" />
 
     <div class="flex items-center justify-center min-h-screen">
         <div class="w-full max-w-md p-8 space-y-4 bg-white shadow-lg rounded-xl">

@@ -9,7 +9,7 @@
 </head>
 
 <body class="bg-gray-100 min-h-screen">
-    @include('navbar.navbar')
+    <x-navbar title="Dashboard" />
 
     <div class="container mx-auto px-6 pt-8 flex max-h-screen">
         <!-- Sidebar -->
@@ -166,12 +166,12 @@
                 if (data.products.length) {
                     data.products.forEach(product => {
                         const productHTML = `
-                    <a href="/product/details/${product.id}" class="block">
+                    <a href="/product/${product.id}" class="block">
                         <div class="bg-white shadow-lg rounded-lg p-4 hover:shadow-xl transition-shadow overflow-hidden">
                             <img src="/storage/${product.image_path}" alt="${product.name}" class="w-full h-48 object-cover rounded-lg mb-4">
                             <div class="flex space-x-2 mb-2">
                                 <span class="bg-gradient-to-r from-teal-500 to-teal-600 text-white text-xs font-semibold rounded-full px-3 py-1">${product.category}</span>
-                                <span class="bg-gradient-to-r from-amber-500 to-amber-600 text-white text-xs font-semibold rounded-full px-3 py-1">${product.species}</span>
+                                <span class="bg-gradient-to-r from-amber-500 to-amber-600 text-white text-xs font-semibold rounded-full px-3 py-1 truncate ">${product.species}</span>
                             </div>
                             <h3 class="text-lg font-semibold text-gray-800">${product.name}</h3>
                             <p class="text-gray-500 mb-2">Rp ${new Intl.NumberFormat('id-ID').format(product.price)}</p>

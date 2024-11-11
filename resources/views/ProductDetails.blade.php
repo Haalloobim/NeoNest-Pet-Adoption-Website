@@ -17,36 +17,7 @@
 
 <body class="bg-gray-100 min-h-screen">
     <!-- Navbar -->
-    <nav class="bg-white shadow-md">
-        <div class="container mx-auto px-6 py-2 flex justify-between items-center">
-            <!-- Centered Logo and Title -->
-            <div class="flex items-center space-x-4">
-                <img src="{{ asset('images/logo.jpg') }}" alt="Logo" class="h-16 w-auto">
-            </div>
-
-            <div class="text-center">
-                <h1 class="text-2xl font-bold text-blue-600">Product Details</h1>
-            </div>
-
-            <!-- Profile Dropdown -->
-            <div class="relative">
-                <!-- Profile Picture as Button -->
-                <button onclick="toggleDropdown()" class="focus:outline-none">
-                    <img src="{{ asset('images/default.png') }}" alt="Profile Picture" class="h-12 w-auto rounded-full">
-                </button>
-                <!-- Dropdown Menu -->
-                <div id="dropdownMenu"
-                    class="hidden absolute right-0 mt-2 w-48 bg-white border border-gray-200 rounded-lg shadow-lg">
-                    <a href="{{ route('dashboard') }}"
-                        class="block px-4 py-2 text-gray-600 hover:bg-gray-100">Dashboard</a>
-                    <a href="{{ route('product.upload') }}"
-                        class="block px-4 py-2 text-gray-600 hover:bg-gray-100">Upload Product</a>
-                    <a href="#" class="block px-4 py-2 text-gray-600 hover:bg-gray-100">Account</a>
-                    <a href="#" class="block px-4 py-2 text-gray-600 hover:bg-gray-100">Logout</a>
-                </div>
-            </div>
-        </div>
-    </nav>
+    <x-navbar title="Product Details" />
 
     <!-- Product Details Content -->
     <div class="container mx-auto px-6 py-8">
