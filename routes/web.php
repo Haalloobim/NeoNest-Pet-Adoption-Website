@@ -5,6 +5,9 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProductController;
 
+
+Route::get('/', [ProductController::class, 'LandingPageProduct'])->name('Landing');
+
 Route::get('/register', function () {
     return view('register');
 })->name('register');

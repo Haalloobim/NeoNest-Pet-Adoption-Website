@@ -84,7 +84,7 @@ class ProductController extends Controller
         if ((Auth::user()->role != 'seller')) {
             return redirect()->route('dashboard')->with('error', 'Unauthorized access!');
         }
-        return view('SellerUpload');
+        return view('seller.SellerUpload');
     }
 
     public function productDetail(Product $product)
@@ -94,7 +94,7 @@ class ProductController extends Controller
 
 
         if (($role == 'seller' && $user->id == $product->seller_id) || $role == 'user') {
-            return view('ProductDetails', compact('product', 'user') );
+            return view('product.ProductDetails', compact('product', 'user') );
         }
 
         return redirect()->route('dashboard')->with('error', 'Unauthorized access!');
@@ -114,7 +114,7 @@ class ProductController extends Controller
         if (Auth::id() != $product->seller_id) {
             return redirect()->route('dashboard')->with('error', 'You are not authorized to edit this product.');
         }
-        return view('ProductEdit', compact('product'));
+        return view('product.ProductEdit', compact('product'));
     }
 
     public function updateProduct(Request $request, Product $product)
@@ -160,6 +160,25 @@ class ProductController extends Controller
     public function showAllUserProducts()
     {
         $products = Product::all();
-        return view('UserShowAllProducts', compact('products'));
+        return view('user.UserShowAllProducts', compact('products'));
+    }
+
+    public function LandingPageProduct(){
+        $products = [];
+        $productsImagesPath = [asset('images/welcome1.jpg'), asset('images/welcome2.jpg'), asset('images/welcome3.jpg')];
+        $productsName = ['Kyliana Joe', 'Indicent Shy', 'Xenon Kye'];
+        $productsPrice = ['100000', '200000', '300000'];
+
+        for ($i = 0; $i < 3; $i++) {
+            $products[$i] = [
+                'image_path' => $productsImagesPath[$i],
+                'name' => $productsName[$i],
+                'price' => $productsPrice[$i],
+            ];
+        }
+        // foreach ($products as $product) {
+        //     dd($product['image_path']);
+        // }
+        return view('Landing', compact('products'));
     }
 }
