@@ -53,7 +53,7 @@
 
 
                 <!-- Category and Species -->
-                <div class="flex justify-center space-x-16 mt-4">
+                <div class="flex justify-center space-x-16 mt-1">
                     <div>
                         <h3 class="text-lg font-semibold text-gray-800">Category</h3>
                         <p class="text-gray-600">{{ ucwords($product->category ?? 'Not specified') }}</p>
@@ -78,23 +78,42 @@
                             Back to Dashboard
                         </a>
                     </div>
-                    <div>
-                        <a href="{{ route('product.edit', $product->id) }}"
-                            class="px-6 py-2 text-white bg-blue-600 rounded-full hover:bg-blue-700 transition">
-                            Edit Product
-                        </a>
-                    </div>
-                    <div>
+                    @if ($user && $user->role === 'seller')
+                        <div>
+                            <a href="{{ route('product.edit', $product->id) }}"
+                                class="px-6 py-2 text-white bg-blue-600 rounded-full hover:bg-blue-700 transition">
+                                Edit Product
+                            </a>
+                        </div>
+                        <div>
 
-                        <form action="{{ route('product.delete', $product->id) }}" method="POST">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit"
-                                class="px-6 py-[7px] text-white bg-red-600 rounded-full hover:bg-red-700 transition">
-                                Delete Product
-                            </button>
-                        </form>
-                    </div>
+                            <form action="{{ route('product.delete', $product->id) }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit"
+                                    class="px-6 py-[7px] text-white bg-red-600 rounded-full hover:bg-red-700 transition">
+                                    Delete Product
+                                </button>
+                            </form>
+                        </div>
+                    @elseif ($user && $user->role === 'user')
+                        <!-- Add to Wishlist Button -->
+                        <div>
+                            <a href="#"
+                                class="px-6 py-2 text-white bg-gradient-to-r from-pink-500 to-pink-600 rounded-full hover:from-pink-600 hover:to-pink-700 transition-all duration-300 ease-in-out">
+                                Add to Wishlist
+                            </a>
+                        </div>
+
+                        <!-- Add to Cart Button -->
+                        <div>
+                            <a href="#" 
+                                class="px-6 py-2 text-white bg-gradient-to-r from-teal-500 to-blue-600 rounded-full hover:from-teal-600 hover:to-blue-700 transition-all duration-300 ease-in-out">
+                                Add to Cart
+                            </a>
+                        </div>
+                    @endif
+
 
                 </div>
             </div>

@@ -10,7 +10,7 @@
 
 <body class="bg-gray-50">
     <!-- Include the navbar -->
-    <x-navbar title="Dashboard" />
+    <x-navbar title="Dashboard" :user="auth()->user()"/>
 
     <div class="flex items-center justify-center min-h-screen">
         <div class="w-full max-w-md p-8 space-y-4 bg-white shadow-lg rounded-xl">
@@ -20,7 +20,7 @@
 
             <!-- User-specific actions -->
             <div class="space-y-4 mt-6">
-                <a href="#" class="w-full block px-4 py-2 text-center text-white bg-blue-600 rounded-lg hover:bg-blue-700">
+                <a href='{{ route('showAllProducts') }}' class="w-full block px-4 py-2 text-center text-white bg-blue-600 rounded-lg hover:bg-blue-700">
                     List Pet for Adoption
                 </a>
                 <a href="#" class="w-full block px-4 py-2 text-center text-white bg-blue-600 rounded-lg hover:bg-blue-700">

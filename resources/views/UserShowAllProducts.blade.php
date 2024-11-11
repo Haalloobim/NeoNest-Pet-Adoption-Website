@@ -9,7 +9,7 @@
 </head>
 
 <body class="bg-gray-100 min-h-screen">
-    <x-navbar title="Dashboard" :user="auth()->user()"/>
+    <x-navbar title="Pets Showcase" :user="auth()->user()" />
 
     <div class="container mx-auto px-6 pt-8 flex max-h-screen">
         <!-- Sidebar -->
@@ -86,7 +86,7 @@
 
         <!-- Product Grid -->
         <div class="flex-1 max-h-screen overflow-y-auto">
-            <h2 class="text-2xl font-semibold text-gray-700 mb-6">Your Products</h2>
+            <h2 class="text-2xl font-semibold text-gray-700 mb-6">Available Pets</h2>
             <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 mb-6" id="productGrid">
                 @foreach ($products as $product)
                     <a href="{{ route('product.details', $product->id) }}" class="block">
@@ -111,7 +111,10 @@
             </div>
 
             @if ($products->isEmpty())
-                <p class="text-center text-gray-500 mt-10">You have no products listed for sale.</p>
+                <div class="text-center py-8">
+                    <p class="text-gray-500 text-base">No pets available at the moment. Please check back later or
+                        adjust your filters.</p>
+                </div>
             @endif
         </div>
     </div>

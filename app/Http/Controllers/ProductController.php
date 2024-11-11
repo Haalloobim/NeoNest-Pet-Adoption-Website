@@ -89,10 +89,15 @@ class ProductController extends Controller
 
     public function productDetail(Product $product)
     {
-        if (Auth::id() != $product->seller_id) {
-            return redirect()->route('dashboard')->with('error', 'You are not authorized to view this product.');
+        $user = Auth::user();
+        $role = $user->role;
+
+
+        if (($role == 'seller' && $user->id == $product->seller_id) || $role == 'user') {
+            return view('ProductDetails', compact('product', 'user') );
         }
-        return view('ProductDetails', compact('product'));
+
+        return redirect()->route('dashboard')->with('error', 'Unauthorized access!');
     }
 
     public function deleteProduct(Product $product)
@@ -150,5 +155,11 @@ class ProductController extends Controller
         $products = $query->get();
 
         return response()->json(['products' => $products]);
+    }
+
+    public function showAllUserProducts()
+    {
+        $products = Product::all();
+        return view('UserShowAllProducts', compact('products'));
     }
 }

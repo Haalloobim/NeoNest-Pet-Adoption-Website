@@ -50,11 +50,12 @@ class AuthController extends Controller
     {
         $user = Auth::user();
         $products = Product::where('seller_id', $user->id)->get();
+        $allProducts = Product::all();
         if (Auth::check()) {
             if (Auth::user()->role == 'seller') {
                 return view('SellerDashboard', compact('user', 'products'));
             } elseif (Auth::user()->role == 'user') {
-                return view('UserDashboard', compact('user', 'products'));
+                return view('UserDashboard', compact('user', 'allProducts'));
             }
         }
         return redirect()->route('login');
