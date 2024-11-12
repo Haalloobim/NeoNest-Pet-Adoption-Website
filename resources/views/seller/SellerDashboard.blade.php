@@ -11,12 +11,10 @@
 <body class="bg-gray-100 min-h-screen">
     <x-navbar title="Dashboard" :user="auth()->user()"/>
 
-    <div class="container mx-auto px-6 pt-8 flex max-h-screen">
-        <!-- Sidebar -->
+    <div class="container mx-auto px-6 pt-8 flex max-h-screen">        
         <aside class="w-64 p-4 bg-white shadow-lg rounded-lg mr-6 top-8 max-h-fit sticky md:block">
             <h2 class="text-lg font-semibold text-gray-800 mb-4">Filter & Sort</h2>
-
-            <!-- Sort By -->
+            
             <div class="mb-6">
                 <h3 class="text-sm font-semibold text-gray-600 mb-2">Sort By</h3>
                 <select class="text-sm w-full p-2 bg-gray-100 border border-gray-300 rounded">
@@ -25,8 +23,7 @@
                     <option value="price_desc">Price: High to Low</option>
                 </select>
             </div>
-
-            <!-- Category Filter -->
+            
             <div class="mb-6">
                 <h3 class="text-sm font-semibold text-gray-600 mb-2">Category</h3>
                 <div class="space-y-2">
@@ -40,8 +37,7 @@
                     </label>
                 </div>
             </div>
-
-            <!-- Price Filter -->
+            
             <div class="mb-6">
                 <h3 class="text-sm font-semibold text-gray-600 mb-2">Price Range</h3>
                 <div class="space-y-2">
@@ -83,8 +79,7 @@
                     Filter</button>
             </div>
         </aside>
-
-        <!-- Product Grid -->
+        
         <div class="flex-1 max-h-screen overflow-y-auto">
             <h2 class="text-2xl font-semibold text-gray-700 mb-6">Your Products</h2>
             <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 mb-6" id="productGrid">

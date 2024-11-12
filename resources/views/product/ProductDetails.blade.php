@@ -98,20 +98,39 @@
                         </div>
                     @elseif ($user && $user->role === 'user')
                         <!-- Add to Wishlist Button -->
-                        <div>
-                            <a href="#"
-                                class="px-6 py-2 text-white bg-gradient-to-r from-pink-500 to-pink-600 rounded-full hover:from-pink-600 hover:to-pink-700 transition-all duration-300 ease-in-out">
-                                Add to Wishlist
-                            </a>
-                        </div>
+                        <!-- if the user doesnt set this following product to their wishtlist make it clickable, but if already set this product to wishlist make it as remove from wishlist-->
+                        @if ($product->wishlistedBy()->where('user_id', $user->id)->exists())
+                            <div>
+                                <form action="{{ route('wishlist.remove', ['product' => $product->id]) }}"
+                                    method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit"
+                                        class="px-6 py-[7px] text-white bg-gradient-to-tr from-red-500 to-orange-700 rounded-full hover:from-red-600 hover:to-orange-800 transition-all duration-300 ease-in-out">
+                                        Remove from Wishlist
+                                    </button>
+                                </form>
+                            </div>
+                        @else
+                            <div>
+                                <form action="{{ route('wishlist.add', ['product' => $product->id]) }}" method="POST">
+                                    @csrf
+                                    <button type="submit"
+                                        class="px-6 py-[7px] text-white bg-gradient-to-r from-teal-500 to-blue-600 rounded-full hover:from-teal-600 hover:to-blue-700 transition-all duration-300 ease-in-out">
+                                        Add to Wishlist
+                                    </button>
+                                </form>
+                            </div>
+                        @endif
+
 
                         <!-- Add to Cart Button -->
-                        <div>
+                        {{-- <div>
                             <a href="#" 
                                 class="px-6 py-2 text-white bg-gradient-to-r from-teal-500 to-blue-600 rounded-full hover:from-teal-600 hover:to-blue-700 transition-all duration-300 ease-in-out">
                                 Add to Cart
                             </a>
-                        </div>
+                        </div> --}}
                     @endif
 
 
