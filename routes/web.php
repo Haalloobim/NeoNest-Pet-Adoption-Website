@@ -22,7 +22,7 @@ Route::get('/login', function () {
 Route::post('/login', [AuthController::class, 'login']);
 
 Route::middleware(['auth'])->group(function () {
-    Route::get('/dashboard', [AuthController::class, 'dashboard'])->name('dashboard');
+    Route::get('/dashboard', [ProductController::class, 'dashboard'])->name('dashboard');
     Route::get('/product/{product}', [ProductController::class, 'productDetail'])->name('product.details');
 
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
@@ -33,8 +33,6 @@ Route::middleware(['auth'])->group(function () {
     Route::delete('/delete/product/{product}', [ProductController::class, 'deleteProduct'])->name('product.delete');
     Route::get('/edit/product/{product}', [ProductController::class, 'editProduct'])->name('product.edit');
     Route::put('/update/product/{product}', [ProductController::class, 'updateProduct'])->name('product.update');
-
-    Route::get('/showAllProducts', [ProductController::class, 'showAllUserProducts'])->name('showAllProducts');
 
     // Wishlist routes
     Route::post('/wishlist/add/{product}', [ShopController::class, 'addWishlist'])->name('wishlist.add');

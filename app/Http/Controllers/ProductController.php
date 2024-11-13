@@ -157,10 +157,20 @@ class ProductController extends Controller
         return response()->json(['products' => $products]);
     }
 
-    public function showAllUserProducts()
+    public function dashboard()
     {
-        $products = Product::all();
-        return view('user.UserShowAllProducts', compact('products'));
+        $user = Auth::user();
+        $products = Product::where('seller_id', $user->id)->get();
+        $allProducts = Product::all();
+        if (Auth::check()) {
+            if (Auth::user()->role == 'seller') {
+                $products = $allProducts;
+                return view('user.UserShowAllProducts', compact('user', 'products'));
+            } elseif (Auth::user()->role == 'user') {
+                return view('user.UserDashboard', data: compact('user', 'allProducts'));
+            }
+        }
+        return redirect()->route('login');
     }
 
     public function LandingPageProduct(){

@@ -45,19 +45,4 @@ class AuthController extends Controller
         Auth::logout();
         return redirect()->route('login');
     }
-
-    public function dashboard()
-    {
-        $user = Auth::user();
-        $products = Product::where('seller_id', $user->id)->get();
-        $allProducts = Product::all();
-        if (Auth::check()) {
-            if (Auth::user()->role == 'seller') {
-                return view('seller.SellerDashboard', compact('user', 'products'));
-            } elseif (Auth::user()->role == 'user') {
-                return view('user.UserDashboard', data: compact('user', 'allProducts'));
-            }
-        }
-        return redirect()->route('login');
-    }
 }
