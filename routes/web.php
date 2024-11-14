@@ -34,6 +34,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/edit/product/{product}', [ProductController::class, 'editProduct'])->name('product.edit');
     Route::put('/update/product/{product}', [ProductController::class, 'updateProduct'])->name('product.update');
 
+    Route::get('/showAllProducts', [ProductController::class, 'showAllProducts'])->name('products.showAll');
+
     // Wishlist routes
     Route::post('/wishlist/add/{product}', [ShopController::class, 'addWishlist'])->name('wishlist.add');
     Route::delete('/wishlist/remove/{product}', [ShopController::class, 'removeWishlist'])->name('wishlist.remove');

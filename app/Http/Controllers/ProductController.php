@@ -161,12 +161,13 @@ class ProductController extends Controller
     {
         $user = Auth::user();
         $products = Product::where('seller_id', $user->id)->get();
+        // dd($user->id, $products);   
         $allProducts = Product::all();
         if (Auth::check()) {
             if (Auth::user()->role == 'seller') {
                 $products = $allProducts;
-                return view('user.UserShowAllProducts', compact('user', 'products'));
-            } elseif (Auth::user()->role == 'user') {
+                return view('seller.SellerDashboard', compact('user', 'products'));
+            } else if (Auth::user()->role == 'user') {
                 return view('user.UserDashboard', data: compact('user', 'allProducts'));
             }
         }
@@ -190,5 +191,11 @@ class ProductController extends Controller
         //     dd($product['image_path']);
         // }
         return view('Landing', compact('products'));
+    }
+
+    public function showAllProducts()
+    {
+        $products = Product::all();
+        return view('user.UserShowAllProducts', compact('products'));
     }
 }
