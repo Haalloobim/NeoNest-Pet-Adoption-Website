@@ -134,6 +134,16 @@
                             </button>
                         </form>
                     </div>
+                    @else
+                    <div>
+                        <form action="{{ route('cart.remove', ['product' => $product->id]) }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit"
+                                class="px-6 py-2 text-white bg-gradient-to-tr from-red-500 to-orange-700 rounded-full hover:from-red-600 hover:to-orange-800 transition-all duration-300 ease-in-out">
+                                Remove from Cart
+                            </button>
+                        </form>
                     @endif
                     @endif
                 </div>
