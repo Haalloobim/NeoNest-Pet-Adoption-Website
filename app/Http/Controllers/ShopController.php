@@ -34,4 +34,16 @@ class ShopController extends Controller
         return redirect()->route('product.details', ['product' => $product->id])
             ->with('message', 'Product removed from wishlist');
     }
+
+    public function showWishlist()
+    {
+        $user = User::find(Auth::id());
+        $wishlist = $user->wishlist;
+
+        if($user->role == 'admin'){
+            return redirect()->route('dashboard')->with('error', 'You are not authorized to view this page');
+        }
+
+        return view('user.UserWishlist', ['wishlist' => $wishlist]);
+    }
 }

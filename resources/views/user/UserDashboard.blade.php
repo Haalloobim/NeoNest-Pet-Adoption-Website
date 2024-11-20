@@ -20,8 +20,11 @@
 
             <!-- User-specific actions -->
             <div class="space-y-4 mt-6">
-                <a href='{{ route('dashboard') }}' class="w-full block px-4 py-2 text-center text-white bg-blue-600 rounded-lg hover:bg-blue-700">
+                <a href='{{ route('products.showAll') }}' class="w-full block px-4 py-2 text-center text-white bg-blue-600 rounded-lg hover:bg-blue-700">
                     List Pet for Adoption
+                </a>
+                <a href='{{ route('wishlist.show') }}' class="w-full block px-4 py-2 text-center text-white bg-blue-600 rounded-lg hover:bg-blue-700">
+                    List of Wishlist
                 </a>
                 <a href="#" class="w-full block px-4 py-2 text-center text-white bg-blue-600 rounded-lg hover:bg-blue-700">
                     View Adopted Pet

@@ -18,7 +18,7 @@
             <h1 class="text-2xl font-bold text-blue-600">{{ $title }}</h1>
         </div>
 
-        <div class="relative">
+        <div class="relative z-40">
             <button onclick="toggleDropdown()" class="focus:outline-none">
                 <img src="{{ asset('images/default.png') }}" alt="Profile Picture" class="h-12 w-auto rounded-full">
             </button>

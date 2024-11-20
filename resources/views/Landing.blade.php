@@ -88,8 +88,12 @@
     <!-- Registration Prompt -->
     <section class="text-center my-8 max-w-3xl mx-auto">
         <h4 class="text-xl font-semibold text-gray-800">Join NeoNest Today</h4>
-        <p class="text-gray-600 mt-4">To access more information and adopt your new best friend, please <a
-                href="/register" class="text-blue-600 hover:text-blue-800">register</a> first.</p>
+        <p class="text-gray-600 mt-4">To access more information and adopt your new best friend, please
+            <a href="/register" class="text-blue-600 hover:text-blue-800">register</a>
+            or
+            <a href="/login" class="text-blue-600 hover:text-blue-800">log in</a>
+            first.
+        </p>
     </section>
 
     <!-- Swiper.js Initialization -->
