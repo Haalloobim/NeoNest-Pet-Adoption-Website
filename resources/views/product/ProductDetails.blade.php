@@ -129,7 +129,7 @@
                         <form action="{{ route('cart.add', ['product' => $product->id]) }}" method="POST">
                             @csrf
                             <button type="submit"
-                            class="px-6 py-2 text-white bg-gradient-to-r from-teal-500 to-blue-600 rounded-full hover:from-teal-600 hover:to-blue-700 transition-all duration-300 ease-in-out">
+                                class="px-6 py-2 text-white bg-gradient-to-r from-teal-500 to-blue-600 rounded-full hover:from-teal-600 hover:to-blue-700 transition-all duration-300 ease-in-out">
                                 Add to Cart
                             </button>
                         </form>
@@ -144,12 +144,12 @@
                                 Remove from Cart
                             </button>
                         </form>
-                    @endif
-                    @endif
+                        @endif
+                        @endif
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 </body>
 
 </html>

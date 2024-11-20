@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Models\Carts;
 use App\Models\Product;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
@@ -34,6 +32,22 @@ class CartController extends Controller
         foreach ($cart as $product) {
             $total += $product->price;
         }
+        return view('user.UserCart', ['cart' => $cart, 'total' => $total]);
+    }
+
+    public function checkout()
+    {
+        $user = User::find(Auth::id());
+        $cart = $user->cart;
+        foreach ($cart as $product) {
+            $product->product_status = 'sold';
+            $product->save();
+        } 
+        $total = 0;
+        foreach ($cart as $product) {
+            $total += $product->price;
+        }
+        $user->cart()->detach();
         return view('user.UserCart', ['cart' => $cart, 'total' => $total]);
     }
 }

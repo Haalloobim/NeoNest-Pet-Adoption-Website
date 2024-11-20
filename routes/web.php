@@ -42,6 +42,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/wishlist', [ShopController::class, 'showWishlist'])->name('wishlist.show');
 
     Route::post('/cart/add/{product}', [CartController::class, 'addToCart'])->name('cart.add');
+    Route::get('/checkout', [CartController::class, 'checkout'])->name('cart.checkout');
     Route::delete('/cart/remove/{product}', [CartController::class, 'removeCart'])->name('cart.remove');
     Route::get('/cart', [CartController::class, 'showCart'])->name('cart.show');
 });
