@@ -165,10 +165,9 @@ class ProductController extends Controller
         $allProducts = Product::all();
         if (Auth::check()) {
             if (Auth::user()->role == 'seller') {
-                $products = $allProducts;
                 return view('seller.SellerDashboard', compact('user', 'products'));
             } else if (Auth::user()->role == 'user') {
-                return view('user.UserDashboard', data: compact('user', 'allProducts'));
+                return view('user.UserDashboard');
             }
         }
         return redirect()->route('login');
