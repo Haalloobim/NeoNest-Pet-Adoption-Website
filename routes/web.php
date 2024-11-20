@@ -46,6 +46,6 @@ Route::middleware(['auth'])->group(function () {
     Route::delete('/cart/remove/{product}', [CartController::class, 'removeCart'])->name('cart.remove');
     Route::get('/cart', [CartController::class, 'showCart'])->name('cart.show');
 
-    Route::get('/scanningPet', [ProductController::class, 'landing_page_for_scan_pet'])->name('scanningPet');
+    Route::get('/scanningPet', [ProductController::class, 'landing_page_for_scan_pet'])->name('scanningPet.show');
     Route::post('/scanningPet', [ProductController::class, 'scan_pet'])->name('upload.pet');
 });
