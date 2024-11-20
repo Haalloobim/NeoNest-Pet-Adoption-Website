@@ -216,8 +216,12 @@ class ProductController extends Controller
         $category = $parsed[0];
         $species = str_replace("_", " ", $parsed[1]);
 
-        // fetch products based on the category and species where product status is available
-        $products = Product::where('category', $category)->where('species', $species)->where('product_status', 'available')->get();
+        // fetch products based on the category and species where product status is available also the image path
+        $products = Product::where('category', $category)
+            ->where('species', $species)
+            ->where('product_status', 'available')
+            ->whereNotNull('image_path')
+            ->get();
 
         $data = [
             'category' => $category,

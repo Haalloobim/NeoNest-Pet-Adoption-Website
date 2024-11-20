@@ -43,6 +43,9 @@
                     <ul class="space-y-3">
                         @foreach ($data['products'] as $product)
                             <li class="p-4 bg-gray-50 border border-gray-300 rounded-lg shadow-sm max-w-md mx-auto">
+                                <!-- add product image -->
+                                <img src="{{ asset('storage/' . $product->image_path) }}" alt="{{ $product->name }}"
+                                    class="w-full h-48 object-cover rounded-lg">
                                 <h4 class="text-lg font-medium text-gray-800">{{ $product->name }}</h4>
                                 <p class="text-gray-600"><strong>Price:</strong> Rp {{ $product->price }}</p>
                                 <p class="text-gray-600"><strong>Description:</strong> {{ $product->description }}</p>
