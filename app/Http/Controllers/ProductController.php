@@ -151,7 +151,7 @@ class ProductController extends Controller
                 }
             });
         }
-        
+
         $products = $query->get();
 
         return response()->json(['products' => $products]);
@@ -161,7 +161,7 @@ class ProductController extends Controller
     {
         $user = Auth::user();
         $products = Product::where('seller_id', $user->id)->get();
-        // dd($user->id, $products);   
+        // dd($user->id, $products);
         $allProducts = Product::all();
         if (Auth::check()) {
             if (Auth::user()->role == 'seller') {
@@ -196,5 +196,42 @@ class ProductController extends Controller
     {
         $products = Product::all();
         return view('user.UserShowAllProducts', compact('products'));
+    }
+
+    # scanning pet and identifying the species and category
+    public function scan_pet(Request $request)
+    {
+        $image = $request->file('image');
+        $petResult = $this->detect($image);
+        // dd($petResult);
+        if ($petResult instanceof \Illuminate\Http\RedirectResponse) {
+            return redirect()->route('dashboard')->with('error', 'Image not recognized! Please try again.');
+        }
+        // dd($petResult);
+        $res1 = $petResult[0];
+        $imagePath = $petResult[1];
+
+        $class = $res1['predictions'][0]['class'];
+        $parsed = explode('-', $class);
+        $category = $parsed[0];
+        $species = str_replace("_", " ", $parsed[1]);
+
+        // fetch products based on the category and species where product status is available
+        $products = Product::where('category', $category)->where('species', $species)->where('product_status', 'available')->get();
+
+        $data = [
+            'category' => $category,
+            'species' => $species,
+            'products' => $products,
+        ];
+
+        // dd($data);
+
+        return view('user.UserScanPet', compact('data'));
+    }
+
+    public function landing_page_for_scan_pet()
+    {
+        return view('user.UserScanPet');
     }
 }
