@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ShopController;
 
@@ -36,9 +37,11 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/showAllProducts', [ProductController::class, 'showAllProducts'])->name('products.showAll');
 
-    // Wishlist routes
     Route::post('/wishlist/add/{product}', [ShopController::class, 'addWishlist'])->name('wishlist.add');
     Route::delete('/wishlist/remove/{product}', [ShopController::class, 'removeWishlist'])->name('wishlist.remove');
-
     Route::get('/wishlist', [ShopController::class, 'showWishlist'])->name('wishlist.show');
+
+    Route::post('/cart/add/{product}', [CartController::class, 'addToCart'])->name('cart.add');
+    Route::delete('/cart/remove/{product}', [CartController::class, 'removeCart'])->name('cart.remove');
+    Route::get('/cart', [CartController::class, 'showCart'])->name('cart.show');
 });

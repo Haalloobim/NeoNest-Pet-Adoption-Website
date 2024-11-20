@@ -9,9 +9,9 @@
 </head>
 
 <body class="bg-gray-50">
-    <x-navbar title="Wishlist" :user="auth()->user()" />
+    <x-navbar title="Carts" :user="auth()->user()" />
     <div class="max-w-5xl mx-auto p-4 space-y-4">
-        @foreach ($wishlist as $product)
+        @foreach ($cart as $product)
         <div
             class="bg-white shadow-md rounded-lg p-4 flex items-center space-x-4 hover:shadow-xl hover:scale-105 transition-transform duration-300 ease-in-out">
             <img
@@ -30,7 +30,7 @@
                     class="bg-teal-500 text-white px-3 py-1 rounded-full text-sm hover:bg-teal-600 transition-colors duration-300 ease-in-out">
                     View
                 </a>
-                <form action="{{ route('wishlist.remove', $product->id) }}" method="POST">
+                <form action="{{ route('cart.remove', $product->id) }}" method="POST">
                     @csrf
                     @method('DELETE')
                     <button type="submit"

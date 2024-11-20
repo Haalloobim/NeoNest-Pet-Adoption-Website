@@ -11,20 +11,19 @@ class ShopController extends Controller
 {
 
 
-    public function addWishlist(Request $request, Product $product)
+    public function addWishlist(Product $product)
     {
         $user = User::find(Auth::id());
 
         // Attach product to user's wishlist
         $user->wishlist()->attach($product);
-
         // dd($user,$product->wishlistedBy()->where('user_id', $user->id)->exists());
 
         return redirect()->route('product.details', ['product' => $product->id])
             ->with('message', 'Product added to wishlist');
     }
 
-    public function removeWishlist(Request $request, Product $product)
+    public function removeWishlist(Product $product)
     {
         $user = User::find(Auth::id());
 
