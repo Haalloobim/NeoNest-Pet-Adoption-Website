@@ -11,13 +11,17 @@ use App\Http\Controllers\ShopController;
 Route::get('/', [ProductController::class, 'LandingPageProduct'])->name('Landing');
 
 Route::get('/register', function () {
-    return view('Register');
+    $capitalWord = ucfirst('register');
+    ## TEST ##
+    return view($capitalWord);
 })->name('register');
 
 Route::post('/register', [AuthController::class, 'register']);
 
 Route::get('/login', function () {
-    return view('Login');
+    $capitalWord = ucfirst('login');
+    ## TEST ##
+    return view($capitalWord);
 })->name('login');
 
 Route::post('/login', [AuthController::class, 'login']);

@@ -16,7 +16,7 @@ services:
   php:
     # build:
     #   context: ./src/
-    image: haalloobim/fp-neonest:latest
+    image: haalloobim/neo:v1
     container_name: php
     depends_on:
       - mysql

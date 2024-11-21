@@ -62,6 +62,10 @@
                         <h3 class="text-lg font-semibold text-gray-800">Species</h3>
                         <p class="text-gray-600">{{ ucwords($product->species ?? 'Not specified') }}</p>
                     </div>
+                    <div>
+                        <h3 class="text-lg font-semibold text-gray-800">Owned By</h3>
+                        <p class="text-gray-600"> {{ $product->seller()->name }} </p>
+                    </div>
                 </div>
 
                 <!-- Separator -->
