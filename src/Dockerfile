@@ -9,6 +9,8 @@ RUN npm install -g yarn
 
 WORKDIR /var/www/html
 
+COPY .env /var/www/html/.env
+
 COPY . /var/www/html
 
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
@@ -19,6 +21,10 @@ RUN chmod -R 777 .
 
 RUN chown -R www-data:www-data .
 
-RUN php artisan key:generate && php artisan storage:link && yarn
+RUN php artisan key:generate 
+
+RUN php artisan storage:link
+
+RUN yarn
 
 RUN yarn build
