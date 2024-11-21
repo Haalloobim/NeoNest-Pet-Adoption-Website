@@ -19,7 +19,7 @@
         </div>
 
         @if (session('error'))
-            <div class="text-red-500 text-center">{{ session('error') }}</div>
+            <div class="text-red-500 text-center">{{ session('error') }}</div> 
         @endif
 
         <form class="mt-8 space-y-6" action="{{ route('login') }}" method="POST">
