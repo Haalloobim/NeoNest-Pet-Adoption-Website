@@ -1,78 +1,50 @@
-version: '3.7'
+version: '3'
+
 services:
-  MySQL:
+  mysql:
     image: mysql:5.7
-    container_name: laravelMySQL
-    restart: on-failure
+    container_name: mysql
+    environment:
+      MYSQL_DATABASE: pbkk
+      MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
+      MYSQL_HOST: mysql
     ports:
       - "3306:3306"
     networks:
-      - HaallooNet
-    environment:
-      MYSQL_ROOT_PASSWORD: ''
-      MYSQL_CONNECTION: 'mysql'
-      MYSQL_HOST: 'localhost'
-      MYSQL_DATABASE: 'NeoNest'
-      MYSQL_USER: 'fpp-bkk'
-      MYSQL_PASSWORD: 'pass'
-      MYSQL_ALLOW_EMPTY_PASSWORD: true
-    healthcheck:
-      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost" ]  
-      interval: 20s
-      timeout: 10s
-      retries: 3
-      start_period: 3s
-  BE:
-    image: haalloobim/neo-nest-fp:latest
-    container_name: laravelBackendApp
-    restart: on-failure
-    ports:
-      - "9000:9000"
-    networks:
-      - HaallooNet
+      - laravel-net
+
+  php:
+    build:
+      context: ./src/
+    container_name: php
     depends_on:
-      MySQL:
-        condition: service_healthy
-    environment:
-      DB_CONNECTION: mysql
-      DB_HOST: MySQL
-      DB_PORT: 3306
-      DB_DATABASE: pbkk
-      DB_USERNAME: 'fpp-bkk'
-      DB_PASSWORD: 'pass'
-    healthcheck:
-      test: [ "CMD", "ping", "-c", "1", "MySQL" ]
-      interval: 20s
-      timeout: 10s
-      retries: 5
-      start_period: 3s
+      - mysql
+    networks:
+      - laravel-net
+    restart: on-failure
     volumes:
-      - connected-volume:/var/www/html
-  BE-Migration:
-    image: haalloobim/neo-nest-fp:latest
-    container_name: laravelBackendMigration
-    restart: on-failure
-    networks:
-      - HaallooNet
-    depends_on:
-      MySQL:
-        condition: service_healthy
-    command: php artisan migrate
+      - app:/var/www/html
+
   nginx:
     image: nginx:alpine
     container_name: nginx
-    restart: on-failure
+    working_dir: /var/www/html
     ports:
       - "80:80"
+      - "80:80"
     volumes:
-      - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf
-      - connected-volume:/var/www/html
-    depends_on:
-      - BE
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf
+      - app:/var/www/html
     networks:
-      - HaallooNet
+      - laravel-net
+    depends_on:
+      - mysql
+      - php
+    restart: on-failure
+
 volumes:
-  connected-volume:
+  app:
+
 networks:
-  HaallooNet:
+  laravel-net:
     driver: bridge
