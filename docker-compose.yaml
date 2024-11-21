@@ -14,8 +14,9 @@ services:
       - laravel-net
 
   php:
-    build:
-      context: ./src/
+    # build:
+    #   context: ./src/
+    image: haalloobim/fp-neonest:latest
     container_name: php
     depends_on:
       - mysql

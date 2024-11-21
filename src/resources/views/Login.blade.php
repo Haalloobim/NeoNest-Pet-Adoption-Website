@@ -15,7 +15,7 @@
         </div>
         <div class="space-y-2">
             <h2 class="text-2xl font-bold text-center text-gray-700 mt-0 mb-1 leading-tight">Welcome Back!</h2>
-            <p class="text-sm text-center text-gray-500 mt-0 mb-4 leading-tight">Login to access your account</p>
+            <p class="text-sm text-center text-gray-500 mt-0 mb-4 leading-tight">Login to access your account!</p>
         </div>
 
         @if (session('error'))
@@ -43,7 +43,7 @@
             </button>
 
             <div class="text-sm text-center text-gray-700 mt-4">
-                Don't have an account? <a href="{{ route('register') }}" class="text-blue-600 hover:underline">Sign Up</a>
+                Don't have an account? <a href="{{ route('register') }}" class="text-blue-600 hover:underline">Sign Up!</a>
             </div>
         </form>
     </div>

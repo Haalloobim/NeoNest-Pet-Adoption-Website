@@ -11,13 +11,13 @@ use App\Http\Controllers\ShopController;
 Route::get('/', [ProductController::class, 'LandingPageProduct'])->name('Landing');
 
 Route::get('/register', function () {
-    return view('register');
+    return view('Register');
 })->name('register');
 
 Route::post('/register', [AuthController::class, 'register']);
 
 Route::get('/login', function () {
-    return view('login');
+    return view('Login');
 })->name('login');
 
 Route::post('/login', [AuthController::class, 'login']);

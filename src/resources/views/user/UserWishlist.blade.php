@@ -35,7 +35,7 @@
                     @method('DELETE')
                     <button type="submit"
                         class="bg-red-500 text-white px-3 py-1 rounded-full text-sm hover:bg-red-600 transition-colors duration-300 ease-in-out">
-                        Remove
+                        Remove from Wishlist
                     </button>
                 </form>
             </div>

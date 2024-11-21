@@ -39,6 +39,7 @@
             to browse through various furry companions, read reviews, and learn about each pet's personality. Neo Nest
             aims to provide a fresh start for animals and families alike, making it easier to find the perfect match and
             create a lifelong bond.</p>
+        <p class="text-gray-600 mt-4">*NOTE: THIS IS A EDUCATIONAL PURPOSE WEBSITE</p>
     </section>
 
     <!-- User Review Holder -->

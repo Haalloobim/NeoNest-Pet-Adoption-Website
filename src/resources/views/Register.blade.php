@@ -15,7 +15,7 @@
         </div>
         <div class="space-y-2">
             <h2 class="text-2xl font-bold text-center text-gray-700 mt-0 mb-1 leading-tight">Create a New Account</h2>
-            <p class="text-sm text-center text-gray-500 mt-0 mb-4 leading-tight">Sign up and start shopping today!</p>
+            <p class="text-sm text-center text-gray-500 mt-0 mb-4 leading-tight">Sign up and start your adoption today!</p>
         </div>
 
         @if ($errors->any())
