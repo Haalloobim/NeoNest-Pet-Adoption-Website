@@ -12,8 +12,6 @@ RUN apk update && \
 COPY . /var/www/html/
 WORKDIR /var/www/html
 
-COPY .env /var/www/html/.env
-
 COPY .env.example /var/www/html/.env
 
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer

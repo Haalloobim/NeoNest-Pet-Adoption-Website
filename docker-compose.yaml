@@ -5,7 +5,7 @@ services:
     image: mysql:5.7
     container_name: mysql
     environment:
-      MYSQL_DATABASE: pbkk
+      MYSQL_DATABASE: NeoNest
       MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
       MYSQL_HOST: mysql
     ports:
@@ -30,7 +30,6 @@ services:
     container_name: nginx
     working_dir: /var/www/html
     ports:
-      - "80:80"
       - "80:80"
     volumes:
       - ./nginx.conf:/etc/nginx/conf.d/default.conf
