@@ -6,125 +6,126 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Neo Nest Landing Page</title>
     @vite('resources/css/app.css')
-    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
 </head>
 
-<body class="bg-gray-100 min-w-full max-w-screen-lg">
-
-    <!-- Sliding Image Section -->
-    <section class="relative w-[80%] max-w-5xl mx-auto my-8">
-        <div class="swiper-container">
-            <div class="swiper-wrapper">
-                <div class="swiper-slide"><img src="{{ asset('images/welcome1.jpg') }}" alt="Welcome Image 1"
-                        class="w-auto h-64 object-cover rounded-lg"></div>
-                <div class="swiper-slide"><img src="{{ asset('images/welcome2.jpg') }}" alt="Welcome Image 2"
-                        class="w-auto h-64 object-cover rounded-lg"></div>
-                <div class="swiper-slide"><img src="{{ asset('images/welcome3.jpg') }}" alt="Welcome Image 3"
-                        class="w-auto h-64 object-cover rounded-lg"></div>
-                <div class="swiper-slide"><img src="{{ asset('images/welcome4.jpg') }}" alt="Welcome Image 4"
-                        class="w-auto h-64 object-cover rounded-lg"></div>
+<body class="bg-white">
+    <header class="fixed top-0 z-20 w-full">
+        <nav class="2lg:px-12 mx-auto max-w-7xl px-6 py-12 lg:px-12 xl:px-6 2xl:px-0">
+            <div class="flex items-center justify-between">
+                <a href="/" class="text-2xl font-light tracking-widest text-black">NeoNest</a>
+                <a href="/login" class="relative py-1.5 text-b before:absolute before:inset-0 before:origin-bottom before:scale-y-[.03] before:bg-white/60 before:transition before:duration-300 hover:before:scale-y-100 hover:before:scale-x-125 hover:before:bg-white/10">
+                    <span class="relative">Login</span>
+                </a>
             </div>
-            <!-- Swiper Navigation -->
-            <div class="swiper-button-next"></div>
-            <div class="swiper-button-prev"></div>
-        </div>
-    </section>
-
-    <!-- Brief Explanation -->
-    <section class="text-center my-8 max-w-3xl mx-auto">
-        <h2 class="text-2xl font-semibold text-gray-800">Welcome to Neo Nest Pet Adoption</h2>
-        <p class="text-gray-600 mt-4">Neo Nest is a welcoming online platform dedicated to connecting families with pets
-            in need of a loving home. The name "Neo Nest" blends "Neo," meaning "new" in Greek, and "Nest," symbolizing
-            a safe and nurturing home. The website offers a seamless adoption experience, allowing potential pet owners
-            to browse through various furry companions, read reviews, and learn about each pet's personality. Neo Nest
-            aims to provide a fresh start for animals and families alike, making it easier to find the perfect match and
-            create a lifelong bond.</p>
-        <p class="text-gray-600 mt-4">*NOTE: THIS IS A EDUCATIONAL PURPOSE WEBSITE</p>
-    </section>
-
-    <!-- User Review Holder -->
-    <section class="my-8 max-w-5xl mx-auto">
-        <h3 class="text-center text-xl font-semibold text-gray-800 mb-4">User Reviews</h3>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div class="bg-white shadow-md rounded-lg p-6 text-center border-t-2 border-orange-600">
-                <p class="text-gray-600">"The team at Neo Nest provided exceptional service and helped me find the
-                    perfect pet for my family. The selection of pets was incredible, and they really took the time to
-                    understand what I was looking for. Highly recommended for anyone searching for a new furry friend!"
-                </p>
-                <p class="text-gray-500 mt-4">- John Doe</p>
-            </div>
-            <div class="bg-white shadow-md rounded-lg p-6 text-center border-t-2 border-cyan-500">
-                <p class="text-gray-600">"I found the perfect puppy at Neo Nest! The adoption process was seamless, and
-                    the staff was so patient in answering all my questions. They truly care about each pet's well-being
-                    and go above and beyond to make sure pets find a loving home. I'm so grateful for this experience!"
-                </p>
-                <p class="text-gray-500 mt-4">- Jane Smith</p>
-            </div>
-            <div class="bg-white shadow-md rounded-lg p-6 text-center border-t-2 border-lime-600">
-                <p class="text-gray-600">"I adopted my cat from Neo Nest, and it was love at first sight! The adoption
-                    process was smooth and easy, and the staff was incredibly helpful. My cat has brought so much joy
-                    into my life, and I can't thank Neo Nest enough for helping me find my perfect companion!"</p>
-                <p class="text-gray-500 mt-4">- Sarah Brown</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Example Product Card -->
-    <section class="my-8 max-w-5xl mx-auto">
-        <h3 class="text-center text-xl font-semibold text-gray-800 mb-4">Featured Pets</h3>
-        <div class="flex flex-row gap-6items-center justify-between">
-            <!-- Replace with dynamic content as needed -->
-            @foreach ($products as $pet)
-                <div class="bg-white shadow-lg rounded-lg p-4 hover:shadow-xl transition-shadow">
-                    <img src="{{ $pet['image_path'] }}" alt="Example Pet"
-                        class="w-full h-48 object-cover rounded-lg mb-4">
-                    <h4 class="text-lg font-semibold text-gray-800">{{ $pet['name'] }}</h4>
-                    <p class="text-gray-500 mt-2">Rp {{ number_format($pet['price'], 0, ',', '.') }}</p>
+        </nav>
+    </header>
+    <main class="background relative ">
+        <section id="home" class="relative flex min-h-screen items-center">
+            <div aria-hidden="true" class="absolute inset-0 z-[1] bg-gradient-to-b from-white/10 via-white/20 to-white"></div>
+            <img src="/images/welcome.jpg" class="fixed inset-0 h-dvh w-full object-cover" width="4160" height="6240">
+            <div class="relative z-10 mx-auto max-w-7xl px-6 pb-40 pt-60 lg:px-12 xl:px-6 2xl:px-0">
+                <div class="pb-12 media-h:md:pb-32 media-h:lg:pb-12 xl:pb-12">
+                    <h1 data-rellax-speed="-3" data-rellax-xs-speed="0" data-rellax-mobile-speed="0" class="rellax text-6xl font-bold text-black sm:text-8xl md:text-9xl xl:leading-tight">Neo Nest</h1>
                 </div>
-                <!-- Additional cards as needed -->
-            @endforeach
+                <div>
+                    <div class="ml-auto md:w-2/3 md:pt-12 lg:w-1/2">
+                        <p class="mb-20 text-lg font-light text-black sm:text-2xl xl:leading-normal">Find your perfect furry friend with NeoNest! Adopt cats and dogs online easily, with detailed profiles and full support for a smooth process. 🐾</p>
+                        <a data-rellax-speed="1" data-rellax-xs-speed="0" data-rellax-mobile-speed="0" href="#pets" class="rellax relative inline-block py-1.5 text-black before:absolute before:inset-0 before:origin-bottom before:scale-y-[.03] before:bg-white/60 before:transition before:duration-300 hover:before:scale-y-100 hover:before:scale-x-125 hover:before:bg-white/10">
+                            <span class="relative">See our pets</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="pets" class="relative z-10 bg-white pb-10 lg:pt-0">
+            <div class="mx-auto max-w-7xl px-6 lg:px-12 xl:px-6 xl:pb-16">
+                <div data-rellax-speed="-3" data-rellax-xs-speed="0" data-rellax-mobile-speed="0" class="rellax flex flex-wrap items-center gap-6">
+                    <h2 class="text-5xl font-bold text-black xl:text-7xl">Our pets</h2>
+                    <span class="h-max rounded-full border border-black/40 px-2 py-1 text-xs tracking-wider text-black mt-10">Over 30+ Species!</span>
+                </div>
+                <div class="relative mt-20 gap-20 gap-x-6 space-y-20 sm:grid sm:grid-cols-2 sm:space-y-0 md:mt-30 lg:mt-50">
+                    <a class="rellax group col-span-2 lg:col-span-1" data-rellax-mobile-speed="0" data-rellax-speed="-2" data-rellax-tablet-speed="0" data-rellax-xs-speed="0" href="/showAllProducts">
+                        <div class="relative before:absolute before:inset-0 before:origin-top before:bg-gradient-to-t before:from-white/5 before:opacity-50 before:backdrop-grayscale before:transition before:duration-500 group-hover:before:origin-bottom group-hover:before:scale-y-0">
+                            <img class="transition duration-500" src="/images/havanese_dog.jpg" width="1000" height="666">
+                            <div class="absolute inset-0 flex items-center justify-center text-white opacity-0 group-hover:opacity-100 bg-black bg-opacity-50 transition-opacity">
+                                <p class="text-lg font-light text-white sm:text-2xl xl:leading-normal">See More</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between p-4">
+                            <h3 class="text-2xl font-normal text-black">Barry</h3>
+                            <span class="h-max rounded-full border border-white/30 px-2 py-1 text-xs tracking-wider text-black">Havanese Dog</span>
+                        </div>
+                    </a>
+                    <a class="rellax group block" data-rellax-mobile-speed="0" data-rellax-speed="1" data-rellax-tablet-speed="0" data-rellax-xs-speed="0" href="/showAllProducts">
+                        <div class="relative before:absolute before:inset-0 before:origin-top before:bg-gradient-to-t before:from-white/5 before:opacity-50 before:backdrop-grayscale before:transition before:duration-500 group-hover:before:origin-bottom group-hover:before:scale-y-0">
+                            <img class="transition duration-500" src="/images/persian_cat.jpg" width="1380" height="920">
+                            <div class="absolute inset-0 flex items-center justify-center text-white opacity-0 group-hover:opacity-100 bg-black bg-opacity-50 transition-opacity">
+                                <p class="text-lg font-light text-white sm:text-2xl xl:leading-normal">See More</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between p-4">
+                            <h3 class="text-2xl font-normal text-black">Albireo</h3>
+                            <span class="h-max rounded-full border border-white/30 px-2 py-1 text-xs tracking-wider text-black">Persian Cat</span>
+                        </div>
+                    </a>
+                    <a class="rellax group block" data-rellax-mobile-speed="0" data-rellax-speed="-2" data-rellax-tablet-speed="0" data-rellax-xs-speed="0" href="/showAllProducts">
+                        <div class="relative before:absolute before:inset-0 before:origin-top before:bg-gradient-to-t before:from-white/5 before:opacity-50 before:backdrop-grayscale before:transition before:duration-500 group-hover:before:origin-bottom group-hover:before:scale-y-0">
+                            <img class="transition duration-500" src="/images/beagle_dog.jpg" width="1380" height="826">
+                            <div class="absolute inset-0 flex items-center justify-center text-white opacity-0 group-hover:opacity-100 bg-black bg-opacity-50 transition-opacity">
+                                <p class="text-lg font-light text-white sm:text-2xl xl:leading-normal">See More</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between p-4">
+                            <h3 class="text-2xl font-normal text-black">Emperor</h3>
+                            <span class="h-max rounded-full border border-white/30 px-2 py-1 text-xs tracking-wider text-black">Beagle Dog</span>
+                        </div>
+                    </a>
+                    <a class="rellax group col-span-2 block lg:col-span-1" data-rellax-mobile-speed="0" data-rellax-speed="0" data-rellax-tablet-speed="0" data-rellax-xs-speed="0" href="/showAllProducts">
+                        <div class="relative before:absolute before:inset-0 before:origin-top before:bg-gradient-to-t before:from-white/5 before:opacity-50 before:backdrop-grayscale before:transition before:duration-500 group-hover:before:origin-bottom group-hover:before:scale-y-0">
+                            <img class="transition duration-500" src="/images/ragdoll_cat.jpg" width="1380" height="1380">
+                            <div class="absolute inset-0 flex items-center justify-center text-white opacity-0 group-hover:opacity-100 bg-black bg-opacity-50 transition-opacity">
+                                <p class="text-lg font-light text-white sm:text-2xl xl:leading-normal">See More</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between p-4">
+                            <h3 class="text-2xl font-normal text-black">Esper</h3>
+                            <span class="h-max rounded-full border border-white/30 px-2 py-1 text-xs tracking-wider text-black">Ragdoll Cat</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+        <section id="about" class="relative z-10 bg-white md:pb-0 md:pt-0 lg:pb-0">
+            <div class="mx-auto max-w-7xl px-6 lg:px-12 xl:px-6 2xl:px-0">
+                <div data-rellax-speed="-0.4" data-rellax-xs-speed="0" data-rellax-mobile-speed="0" class="rellax flex flex-wrap items-center gap-6">
+                    <h2 class="text-5xl font-bold text-black xl:text-7xl">About us</h2>
+                </div>
+                <div class="mt-8 md:mt-16">
+                    <div class="grid gap-6">
+                        <div class="grid md:grid-cols-3">
+                            <div class="overflow-hidden md:col-span-2">
+                                <img src="/images/welcome.jpg" alt="unnamed duo photo" width="1500" height="1000">
+                            </div>
+                        </div>
+                        <div data-rellax-speed="1" data-rellax-xs-speed="0" data-rellax-mobile-speed="0" data-rellax-tablet-speed="0.5" class="rellax ml-auto md:w-3/5 lg:w-2/5 transform md:translate-y-[-50px] lg:translate-y-[-526px]">
+                            <p class="mt-12 text-2xl font-light text-black">
+                                Discover the perfect furry companion with NeoNest! Our online adoption platform connects you with adorable cats and dogs looking for loving homes. Browse, choose, and adopt—all from the comfort of your home. With detailed pet profiles and support to ensure a smooth adoption process, finding your new best friend has never been easier. Start your journey to a lifetime of love at NeoNest today! 🐾</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="relative bg-white pt-32 backdrop-opacity-0">
+        <div class="space-y-8 md:space-y-12">
+            <div class="flex flex-wrap justify-between gap-3">
+                <span class="text-sm text-black/50">© Radiant 2021 - Present</span>
+                <span class="text-sm text-black/50">Designed by <a href="https://tailus.io/" class="text-black">Tailus</a> in Lubumbashi </span>
+            </div>
         </div>
-    </section>
-
-    <!-- Registration Prompt -->
-    <section class="text-center my-8 max-w-3xl mx-auto">
-        <h4 class="text-xl font-semibold text-gray-800">Join NeoNest Today</h4>
-        <p class="text-gray-600 mt-4">To access more information and adopt your new best friend, please
-            <a href="/register" class="text-blue-600 hover:text-blue-800">register</a>
-            or
-            <a href="/login" class="text-blue-600 hover:text-blue-800">log in</a>
-            first.
-        </p>
-    </section>
-
-    <!-- Swiper.js Initialization -->
-    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-    <script>
-        const swiper = new Swiper('.swiper-container', {
-            loop: true,
-            centeredSlides: true,
-            slidesPerView: 2, // Shows part of the next slide for a centered effect
-            spaceBetween: 0, // Removes space between slides
-            navigation: {
-                nextEl: '.swiper-button-next',
-                prevEl: '.swiper-button-prev',
-            },
-            autoplay: {
-                delay: 3000,
-                disableOnInteraction: false,
-            },
-            breakpoints: {
-                768: {
-                    slidesPerView: 1.5,
-                    spaceBetween: 5,
-                },
-                1024: {
-                    slidesPerView: 2,
-                    spaceBetween: 10,
-                }
-            }
-        });
-    </script>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/gh/dixonandmoe/rellax@master/rellax.min.js"></script>
 </body>
 
 </html>
