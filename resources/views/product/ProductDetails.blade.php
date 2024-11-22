@@ -103,6 +103,7 @@
                     @elseif ($user && $user->role === 'user')
                     <!-- Add to Wishlist Button -->
                     <!-- if the user doesnt set this following product to their wishtlist make it clickable, but if already set this product to wishlist make it as remove from wishlist-->
+                    @if ($product->status === 'available')
                     @if ($product->wishlistedBy()->where('user_id', $user->id)->exists())
                     <div>
                         <form action="{{ route('wishlist.remove', ['product' => $product->id]) }}"
@@ -148,6 +149,7 @@
                                 Remove from Cart
                             </button>
                         </form>
+                        @endif
                         @endif
                         @endif
                     </div>

@@ -4,9 +4,9 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\HistoryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ShopController;
-
 
 Route::get('/', [ProductController::class, 'LandingPageProduct'])->name('Landing');
 
@@ -54,4 +54,6 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/scanningPet', [ProductController::class, 'scan_pet'])->name('upload.pet');
 
     Route::get('/profile', [ProductController::class, 'userProfile'])->name('profile');
+
+    Route::get('/adoptedPets', [HistoryController::class, 'show'])->name('adoptedPets.show');
 });

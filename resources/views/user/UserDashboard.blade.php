@@ -26,7 +26,10 @@
                 <a href='{{ route('wishlist.show') }}' class="w-full block px-4 py-2 text-center text-white bg-blue-600 rounded-lg hover:bg-blue-700">
                     List of Wishlist
                 </a>
-                <a href='#' class="w-full block px-4 py-2 text-center text-white bg-blue-600 rounded-lg hover:bg-blue-700">
+                <a href='{{ route('cart.show') }}' class="w-full block px-4 py-2 text-center text-white bg-blue-600 rounded-lg hover:bg-blue-700">
+                    List of Cart
+                </a>
+                <a href='{{ route('adoptedPets.show') }}' class="w-full block px-4 py-2 text-center text-white bg-blue-600 rounded-lg hover:bg-blue-700">
                     View Adopted Pet
                 </a>
                 <a href='{{ route('scanningPet.show') }}' class="w-full block px-4 py-2 text-center text-white bg-blue-600 rounded-lg hover:bg-blue-700">

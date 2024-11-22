@@ -42,6 +42,7 @@
         </div>
         @endforeach
 
+        @if (count($cart) > 0)
         <div class="flex flex-col sm:flex-row items-center justify-between gap-4 p-4 bg-white rounded-lg shadow">
             <div class="flex-1">
                 <h3 class="text-lg font-semibold text-gray-800">Total Price</h3>
@@ -52,6 +53,18 @@
                 Checkout
             </a>
         </div>
+        @else
+        <div class="flex justify-center items-center h-[75dvh]">
+            <div class="text-center">
+                <h3 class="text-xl font-semibold text-gray-800">Cart is Empty</h3>
+                <p class="text-gray-500 text-md">
+                    Please help some
+                    <a href="/showAllProducts" class="text-blue-500 hover:underline">pets</a>
+                    to find a new home.
+                </p>
+            </div>
+        </div>
+        @endif
     </div>
 </body>
 
