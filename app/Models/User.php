@@ -59,6 +59,6 @@ class User extends Authenticatable
 
     public function pets()
     {
-        return $this->hasMany(Product::class, 'seller_id', 'id');
+        return $this->hasManyThrough(TransactionProduct::class, Transaction::class, 'user_id', 'transaction_id', 'id', 'id');
     }
 }

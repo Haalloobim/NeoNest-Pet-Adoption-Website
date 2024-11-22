@@ -42,18 +42,19 @@
             <div class="mt-8">
                 <h2 class="text-xl font-semibold text-gray-800 mb-4">Owned Pets</h2>
                 <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-                    @foreach ($pets as $pet)
-                        <div
-                            class="bg-white shadow-lg rounded-lg p-4 hover:shadow-xl transition-all duration-200 hover:-translate-y-[6px] hover:scale-[1.02] group overflow-hidden border border-slate-400">
-                            <img src="{{ asset('storage/' . $pet->image_path) }}" alt="{{ $pet->name }}"
-                                class="w-full h-44   bject-cover rounded-lg mb-4 grayscale-[50%] group-hover:grayscale-0 transition-all duration-200">
-                            <h3 class="text-lg font-semibold text-gray-800">{{ $pet->name }}</h3>
-                        </div>
+                    @foreach ($ownedPets as $pet)
+                    <div
+                        class="bg-white shadow-lg rounded-lg p-4 hover:shadow-xl transition-all duration-200 hover:-translate-y-[6px] hover:scale-[1.02] group overflow-hidden border border-slate-400">
+                        <img src="{{ asset('storage/' . $pet->image_path) }}" alt="{{ $pet->name }}"
+                            class="w-full h-44 object-cover rounded-lg mb-4 grayscale-[50%] group-hover:grayscale-0 transition-all duration-200">
+
+                        <h3 class="text-lg font-semibold text-gray-800">{{ $pet->name }}</h3>
+                    </div>
                     @endforeach
                 </div>
 
-                @if ($pets->isEmpty())
-                    <p class="text-center text-gray-500 mt-4">No pets owned yet.</p>
+                @if (count($ownedPets) === 0)
+                <p class="text-center text-gray-500 mt-4">No pets owned yet.</p>
                 @endif
             </div>
         </div>

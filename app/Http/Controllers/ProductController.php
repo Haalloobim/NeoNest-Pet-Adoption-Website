@@ -251,9 +251,12 @@ class ProductController extends Controller
     {
         $user = Auth::user(); 
         // dd($user);
-        $pets = $user->pets; 
-        // dd($pets);
-
-        return view('Profile', compact('user', 'pets'));
+        $pets = $user->pets;
+        $ownedPets = []; 
+        foreach ($pets as $pet) {
+            $ownedPets[] = $pet->product;
+        }
+        // dd($ownedPets);
+        return view('Profile', compact('user', 'ownedPets'));
     }
 }
