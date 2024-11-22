@@ -83,79 +83,81 @@
                         </a>
                     </div>
                     @if ($user && $user->role === 'seller')
-                    <div>
-                        <a href="{{ route('product.edit', $product->id) }}"
-                            class="px-6 py-2 text-white bg-blue-600 rounded-full hover:bg-blue-700 transition">
-                            Edit Product
-                        </a>
-                    </div>
-                    <div>
+                        <div>
+                            <a href="{{ route('product.edit', $product->id) }}"
+                                class="px-6 py-2 text-white bg-blue-600 rounded-full hover:bg-blue-700 transition">
+                                Edit Product
+                            </a>
+                        </div>
+                        <div>
 
-                        <form action="{{ route('product.delete', $product->id) }}" method="POST">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit"
-                                class="px-6 py-[7px] text-white bg-red-600 rounded-full hover:bg-red-700 transition">
-                                Delete Product
-                            </button>
-                        </form>
-                    </div>
+                            <form action="{{ route('product.delete', $product->id) }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit"
+                                    class="px-6 py-[7px] text-white bg-red-600 rounded-full hover:bg-red-700 transition">
+                                    Delete Product
+                                </button>
+                            </form>
+                        </div>
                     @elseif ($user && $user->role === 'user')
-                    <!-- Add to Wishlist Button -->
-                    <!-- if the user doesnt set this following product to their wishtlist make it clickable, but if already set this product to wishlist make it as remove from wishlist-->
-                    @if ($product->status === 'available')
-                    @if ($product->wishlistedBy()->where('user_id', $user->id)->exists())
-                    <div>
-                        <form action="{{ route('wishlist.remove', ['product' => $product->id]) }}"
-                            method="POST">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit"
-                                class="px-6 py-[7px] text-white bg-gradient-to-tr from-red-500 to-orange-700 rounded-full hover:from-red-600 hover:to-orange-800 transition-all duration-300 ease-in-out">
-                                Remove from Wishlist
-                            </button>
-                        </form>
-                    </div>
-                    @else
-                    <div>
-                        <form action="{{ route('wishlist.add', ['product' => $product->id]) }}" method="POST">
-                            @csrf
-                            <button type="submit"
-                                class="px-6 py-[7px] text-white bg-gradient-to-r from-teal-500 to-blue-600 rounded-full hover:from-teal-600 hover:to-blue-700 transition-all duration-300 ease-in-out">
-                                Add to Wishlist
-                            </button>
-                        </form>
-                    </div>
+                        <!-- Add to Wishlist Button -->
+                        <!-- if the user doesnt set this following product to their wishtlist make it clickable, but if already set this product to wishlist make it as remove from wishlist-->
+                        @if ($product->product_status === 'available')
+                            @if ($product->wishlistedBy()->where('user_id', $user->id)->exists())
+                                <div>
+                                    <form action="{{ route('wishlist.remove', ['product' => $product->id]) }}"
+                                        method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit"
+                                            class="px-6 py-[7px] text-white bg-gradient-to-tr from-red-500 to-orange-700 rounded-full hover:from-red-600 hover:to-orange-800 transition-all duration-300 ease-in-out">
+                                            Remove from Wishlist
+                                        </button>
+                                    </form>
+                                </div>
+                            @else
+                                <div>
+                                    <form action="{{ route('wishlist.add', ['product' => $product->id]) }}"
+                                        method="POST">
+                                        @csrf
+                                        <button type="submit"
+                                            class="px-6 py-[7px] text-white bg-gradient-to-r from-teal-500 to-blue-600 rounded-full hover:from-teal-600 hover:to-blue-700 transition-all duration-300 ease-in-out">
+                                            Add to Wishlist
+                                        </button>
+                                    </form>
+                                </div>
+                            @endif
+
+
+                            @if (!$product->cartedBy()->where('user_id', $user->id)->exists())
+                                <div>
+                                    <form action="{{ route('cart.add', ['product' => $product->id]) }}" method="POST">
+                                        @csrf
+                                        <button type="submit"
+                                            class="px-6 py-2 text-white bg-gradient-to-r from-teal-500 to-blue-600 rounded-full hover:from-teal-600 hover:to-blue-700 transition-all duration-300 ease-in-out">
+                                            Add to Cart
+                                        </button>
+                                    </form>
+                                </div>
+                            @else
+                                <div>
+                                    <form action="{{ route('cart.remove', ['product' => $product->id]) }}"
+                                        method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit"
+                                            class="px-6 py-2 text-white bg-gradient-to-tr from-red-500 to-orange-700 rounded-full hover:from-red-600 hover:to-orange-800 transition-all duration-300 ease-in-out">
+                                            Remove from Cart
+                                        </button>
+                                    </form>
+                            @endif
+                        @endif
                     @endif
-
-
-                    @if (!$product->cartedBy()->where('user_id', $user->id)->exists())
-                    <div>
-                        <form action="{{ route('cart.add', ['product' => $product->id]) }}" method="POST">
-                            @csrf
-                            <button type="submit"
-                                class="px-6 py-2 text-white bg-gradient-to-r from-teal-500 to-blue-600 rounded-full hover:from-teal-600 hover:to-blue-700 transition-all duration-300 ease-in-out">
-                                Add to Cart
-                            </button>
-                        </form>
-                    </div>
-                    @else
-                    <div>
-                        <form action="{{ route('cart.remove', ['product' => $product->id]) }}" method="POST">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit"
-                                class="px-6 py-2 text-white bg-gradient-to-tr from-red-500 to-orange-700 rounded-full hover:from-red-600 hover:to-orange-800 transition-all duration-300 ease-in-out">
-                                Remove from Cart
-                            </button>
-                        </form>
-                        @endif
-                        @endif
-                        @endif
-                    </div>
                 </div>
             </div>
         </div>
+    </div>
 </body>
 
 </html>
