@@ -94,7 +94,8 @@ class ProductController extends Controller
 
 
         if (($role == 'seller' && $user->id == $product->seller_id) || $role == 'user') {
-            return view('product.ProductDetails', compact('product', 'user') );
+            // dd($product->seller()->get()->first()['name']);
+            return view('product.ProductDetails', compact('product', 'user'));
         }
 
         return redirect()->route('dashboard')->with('error', 'Unauthorized access!');
@@ -151,6 +152,11 @@ class ProductController extends Controller
                 }
             });
         }
+        // query only users product if user is a seller
+
+        if (Auth::user()->role == 'seller') {
+            $query->where('seller_id', Auth::id());
+        }
 
         $products = $query->get();
 
@@ -173,7 +179,8 @@ class ProductController extends Controller
         return redirect()->route('login');
     }
 
-    public function LandingPageProduct(){
+    public function LandingPageProduct()
+    {
         $products = [];
         $productsImagesPath = [asset('images/welcome1.jpg'), asset('images/welcome2.jpg'), asset('images/welcome3.jpg')];
         $productsName = ['Kyliana Joe', 'Indicent Shy', 'Xenon Kye'];
@@ -237,5 +244,16 @@ class ProductController extends Controller
     public function landing_page_for_scan_pet()
     {
         return view('user.UserScanPet');
+    }
+
+
+    public function userProfile()
+    {
+        $user = Auth::user(); 
+        // dd($user);
+        $pets = $user->pets; 
+        // dd($pets);
+
+        return view('Profile', compact('user', 'pets'));
     }
 }

@@ -45,4 +45,5 @@ class ShopController extends Controller
 
         return view('user.UserWishlist', ['wishlist' => $wishlist]);
     }
+
 }

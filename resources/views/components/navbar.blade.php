@@ -31,7 +31,7 @@
                     <a href="#" class="block px-4 py-2 text-gray-600 hover:bg-gray-100">Scan Product</a>
                 @endif
                 
-                <a href="#" class="block px-4 py-2 text-gray-600 hover:bg-gray-100">Account</a>
+                <a href="{{ route('profile') }}" class="block px-4 py-2 text-gray-600 hover:bg-gray-100">Account</a>
                 <form id="logoutForm" action="{{ route('logout') }}" method="POST">
                     @csrf
                     <button type="submit" class="block w-full text-left px-4 py-2 text-gray-600 hover:bg-gray-100">Logout</button>
