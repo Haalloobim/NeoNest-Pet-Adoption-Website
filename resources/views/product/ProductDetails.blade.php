@@ -64,7 +64,7 @@
                     </div>
                     <div>
                         <h3 class="text-lg font-semibold text-gray-800">Owned By</h3>
-                        <p class="text-gray-600"> {{ $product->seller()->name }} </p>
+                        <p class="text-gray-600"> {{ $product->seller()->get()->first()['name'] }} </p>
                     </div>
                 </div>
 

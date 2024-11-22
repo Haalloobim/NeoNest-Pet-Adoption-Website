@@ -52,4 +52,6 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/scanningPet', [ProductController::class, 'landing_page_for_scan_pet'])->name('scanningPet.show');
     Route::post('/scanningPet', [ProductController::class, 'scan_pet'])->name('upload.pet');
+
+    Route::get('/profile', [ProductController::class, 'userProfile'])->name('profile');
 });

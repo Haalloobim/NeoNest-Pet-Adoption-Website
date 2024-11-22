@@ -15,7 +15,7 @@
         
 
         <div class="text-center">
-            <h1 class="text-2xl font-bold text-blue-600">{{ $title }}</h1>
+            <h1 class="text-2xl font-bold bg-gradient-to-r from-cyan-500 via-sky-600 to-blue-700 inline-block text-transparent bg-clip-text">{{ $title }}</h1>
         </div>
 
         <div class="relative z-40">
@@ -31,7 +31,7 @@
                     <a href="#" class="block px-4 py-2 text-gray-600 hover:bg-gray-100">Scan Product</a>
                 @endif
                 
-                <a href="#" class="block px-4 py-2 text-gray-600 hover:bg-gray-100">Account</a>
+                <a href="{{ route('profile') }}" class="block px-4 py-2 text-gray-600 hover:bg-gray-100">Account</a>
                 <form id="logoutForm" action="{{ route('logout') }}" method="POST">
                     @csrf
                     <button type="submit" class="block w-full text-left px-4 py-2 text-gray-600 hover:bg-gray-100">Logout</button>
