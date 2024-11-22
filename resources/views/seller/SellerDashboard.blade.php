@@ -97,12 +97,12 @@
         </aside>
 
         <div class="flex-1 max-h-screen overflow-y-auto">
-            <h2 class="text-2xl font-semibold text-gray-700 mb-2">Your Products</h2>
-            <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 mb-6 overflow-hidden pb-8 pt-4" id="productGrid">
+            <h2 class="text-2xl font-semibold text-gray-700 mb-2 pl-3">Your Products</h2>
+            <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 mb-6 overflow-hidden pb-8 pt-4 px-3" id="productGrid">
                 @foreach ($products as $product)
                     <a href="{{ route('product.details', $product->id) }}" class="block">
                         <div
-                            class="bg-white shadow-lg rounded-lg p-4 hover:shadow-xl transition-all duration-200 hover:-translate-y-[6px] hover:scale-[1.02] group overflow-hidden">
+                            class="bg-white shadow-lg rounded-lg p-4 hover:shadow-xl transition-all duration-200 hover:-translate-y-[6px] hover:scale-[1.02] group overflow-hidden border border-slate-400">
                             <img src="{{ asset('storage/' . $product->image_path) }}" alt="{{ $product->name }}"
                                 class="w-full h-48 object-cover rounded-lg mb-4 grayscale-[50%] group-hover:grayscale-0 transition-all duration-200">
                             <div class="flex space-x-2 mb-2">
@@ -197,7 +197,7 @@
                     data.products.forEach(product => {
                         const productHTML = `
                     <a href="/product/${product.id}" class="block">
-                        <div class="bg-white shadow-lg rounded-lg p-4 hover:shadow-xl transition-all duration-200 hover:-translate-y-[6px] hover:scale-[1.02] group overflow-hidden">
+                        <div class="bg-white shadow-lg rounded-lg p-4 hover:shadow-xl transition-all duration-200 hover:-translate-y-[6px] hover:scale-[1.02] group overflow-hidden border border-slate-400">
                             <img src="/storage/${product.image_path}" alt="${product.name}" class="w-full h-48 object-cover rounded-lg mb-4 grayscale-[50%] group-hover:grayscale-0 transition-all duration-200">
                             <div class="flex space-x-2 mb-2">
                                 <span class="bg-gradient-to-r from-teal-500 to-teal-600 text-white text-xs font-semibold rounded-full px-3 py-1">${product.category}</span>

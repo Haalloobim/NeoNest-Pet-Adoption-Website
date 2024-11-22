@@ -12,7 +12,7 @@
     <!-- Navbar -->
     <x-navbar title="User Profile" :user="auth()->user()" />
 
-    <div class="container mx-auto px-6 pt-8">
+    <div class="container mx-auto px-6 pt-8 mb-6">
         <div class="bg-white shadow-md rounded-lg p-6">
             <!-- User Information -->
             <div class="flex flex-col md:flex-row items-center">
@@ -44,7 +44,7 @@
                 <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
                     @foreach ($pets as $pet)
                         <div
-                            class="bg-white shadow-lg rounded-lg p-4 hover:shadow-xl transition-all duration-200 hover:-translate-y-[6px] hover:scale-[1.02] group overflow-hidden">
+                            class="bg-white shadow-lg rounded-lg p-4 hover:shadow-xl transition-all duration-200 hover:-translate-y-[6px] hover:scale-[1.02] group overflow-hidden border border-slate-400">
                             <img src="{{ asset('storage/' . $pet->image_path) }}" alt="{{ $pet->name }}"
                                 class="w-full h-44   bject-cover rounded-lg mb-4 grayscale-[50%] group-hover:grayscale-0 transition-all duration-200">
                             <h3 class="text-lg font-semibold text-gray-800">{{ $pet->name }}</h3>
