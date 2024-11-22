@@ -15,7 +15,7 @@
         
 
         <div class="text-center">
-            <h1 class="text-2xl font-bold text-blue-600">{{ $title }}</h1>
+            <h1 class="text-2xl font-bold bg-gradient-to-r from-cyan-500 via-sky-600 to-blue-700 inline-block text-transparent bg-clip-text">{{ $title }}</h1>
         </div>
 
         <div class="relative z-40">
