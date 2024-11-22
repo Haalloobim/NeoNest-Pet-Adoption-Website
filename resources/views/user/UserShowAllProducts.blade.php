@@ -170,7 +170,7 @@
                     data.products.forEach(product => {
                         const productHTML = `
                     <a href="/product/${product.id}" class="block">
-                        <div class="bg-white shadow-lg rounded-lg p-4 hover:shadow-2xl transition-all duration-200 hover:-translate-y-[6px] hover:scale-[1.02] group">
+                        <div class="bg-white shadow-lg rounded-lg p-4 hover:shadow-xl transition-all duration-200 hover:-translate-y-[6px] hover:scale-[1.02] group overflow-hidden border border-slate-400">
                             <img src="/storage/${product.image_path}" alt="${product.name}" class="w-full h-48 object-cover rounded-lg mb-4 grayscale-[50%] group-hover:grayscale-0 transition-all duration-200">
                             <div class="flex space-x-2 mb-2">
                                 <span class="bg-gradient-to-r from-teal-500 to-teal-600 text-white text-xs font-semibold rounded-full px-3 py-1">${product.category}</span>

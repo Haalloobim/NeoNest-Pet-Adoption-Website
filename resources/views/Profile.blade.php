@@ -31,7 +31,7 @@
                     </div>
                     <div>
                         <span
-                            class="bg-gradient-to-r {{ $user->role === 'seller' ? 'from-purple-500 to-purple-600'  : 'from-green-500 to-lime-600' }} text-white text-xs font-semibold rounded-full px-3 py-1 mb-4 inline-block">
+                            class="bg-gradient-to-r {{ $user->role === 'seller' ? 'from-purple-500 to-purple-600' : 'from-green-500 to-lime-600' }} text-white text-xs font-semibold rounded-full px-3 py-1 mb-4 inline-block">
                             Role: {{ ucwords($user->role) }}
                         </span>
                     </div>
@@ -39,24 +39,46 @@
             </div>
 
             <!-- Owned Pets Section -->
-            <div class="mt-8">
-                <h2 class="text-xl font-semibold text-gray-800 mb-4">Owned Pets</h2>
-                <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-                    @foreach ($ownedPets as $pet)
-                    <div
-                        class="bg-white shadow-lg rounded-lg p-4 hover:shadow-xl transition-all duration-200 hover:-translate-y-[6px] hover:scale-[1.02] group overflow-hidden border border-slate-400">
-                        <img src="{{ asset('storage/' . $pet->image_path) }}" alt="{{ $pet->name }}"
-                            class="w-full h-44 object-cover rounded-lg mb-4 grayscale-[50%] group-hover:grayscale-0 transition-all duration-200">
+            @if ($user->role === 'user')
+                <div class="mt-8">
+                    <h2 class="text-xl font-semibold text-gray-800 mb-4">Owned Pets</h2>
+                    <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                        @foreach ($ownedPets as $pet)
+                            <div
+                                class="bg-white shadow-lg rounded-lg p-4 hover:shadow-xl transition-all duration-200 hover:-translate-y-[6px] hover:scale-[1.02] group overflow-hidden border border-slate-400">
+                                <img src="{{ asset('storage/' . $pet->image_path) }}" alt="{{ $pet->name }}"
+                                    class="w-full h-44 object-cover rounded-lg mb-4 grayscale-[50%] group-hover:grayscale-0 transition-all duration-200">
 
-                        <h3 class="text-lg font-semibold text-gray-800">{{ $pet->name }}</h3>
+                                <h3 class="text-lg font-semibold text-gray-800">{{ $pet->name }}</h3>
+                            </div>
+                        @endforeach
                     </div>
-                    @endforeach
-                </div>
 
-                @if (count($ownedPets) === 0)
-                <p class="text-center text-gray-500 mt-4">No pets owned yet.</p>
-                @endif
-            </div>
+                    @if (count($ownedPets) === 0)
+                        <p class="text-center text-gray-500 mt-4">No pets owned yet.</p>
+                    @endif
+                </div>
+            @endif
+            @if ($user->role === 'seller')
+                <div class="mt-8">
+                    <h2 class="text-xl font-semibold text-gray-800 mb-4">Sold Pets:</h2>
+                    <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                        @foreach ($soldProducts as $pets)
+                            <div
+                                class="bg-white shadow-lg rounded-lg p-4 hover:shadow-xl transition-all duration-200 hover:-translate-y-[6px] hover:scale-[1.02] group overflow-hidden border border-slate-400">
+                                <img src="{{ asset('storage/' . $pets->image_path) }}" alt="{{ $pets->name }}"
+                                    class="w-full h-44 object-cover rounded-lg mb-4 grayscale-[50%] group-hover:grayscale-0 transition-all duration-200">
+
+                                <h3 class="text-lg font-semibold text-gray-800">{{ $pets->name }}</h3>
+                            </div>
+                        @endforeach
+                    </div>
+
+                    @if (count($soldProducts) === 0)
+                        <p class="text-center text-gray-500 mt-4">No pets sold yet.</p>
+                    @endif
+                </div>
+            @endif
         </div>
     </div>
 </body>

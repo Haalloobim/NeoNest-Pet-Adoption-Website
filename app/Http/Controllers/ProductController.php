@@ -94,7 +94,8 @@ class ProductController extends Controller
 
 
         if (($role == 'seller' && $user->id == $product->seller_id) || $role == 'user') {
-            // dd($product->seller()->get()->first()['name']);
+            // dd($product->wishlistedBy()->where('user_id', $user->id)->exists());
+            
             return view('product.ProductDetails', compact('product', 'user'));
         }
 
@@ -249,9 +250,19 @@ class ProductController extends Controller
 
     public function userProfile()
     {
-        $user = Auth::user(); 
-        // dd($user);
+        $user = Auth::user();
+        if ($user->role == 'seller') {
+            $query = Product::query();
+            $query->where('seller_id', $user->id);
+            $query->where('product_status', 'sold');
+            $soldProducts = $query->get();
+
+            return view('Profile', compact('user', 'soldProducts'));
+        }
+        
+        dd($user);
         $pets = $user->pets;
+        // dd($pets);
         $ownedPets = []; 
         foreach ($pets as $pet) {
             $ownedPets[] = $pet->product;
