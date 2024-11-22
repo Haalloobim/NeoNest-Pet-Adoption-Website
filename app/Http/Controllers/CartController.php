@@ -66,6 +66,6 @@ class CartController extends Controller
         }
 
         $user->cart()->detach();
-        return view('user.UserCart', ['cart' => $cart, 'total' => $total]);
+        return view('user.UserCart', ['cart' => null, 'total' => 0]);
     }
 }
