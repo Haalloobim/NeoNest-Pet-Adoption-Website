@@ -9,10 +9,12 @@
 </head>
 
 <body class="bg-white">
-    <header class="fixed top-0 z-20 w-full">
+    <header class="fixed top-0 z-10 w-full">
         <nav class="2lg:px-12 mx-auto max-w-7xl px-6 py-12 lg:px-12 xl:px-6 2xl:px-0">
             <div class="flex items-center justify-between">
-                <a href="/" class="text-2xl font-light tracking-widest text-black">NeoNest</a>
+                <a href="/" class="text-2xl font-light tracking-widest text-black">
+                    <img src="/images/logo.png" alt="" class="tracking-widest w-24 h-24">
+                </a>
                 <a href="/login" class="relative py-1.5 text-b before:absolute before:inset-0 before:origin-bottom before:scale-y-[.03] before:bg-white/60 before:transition before:duration-300 hover:before:scale-y-100 hover:before:scale-x-125 hover:before:bg-white/10">
                     <span class="relative">Login</span>
                 </a>
