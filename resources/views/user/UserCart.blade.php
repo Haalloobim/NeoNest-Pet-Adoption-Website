@@ -89,6 +89,15 @@
 
     </div>
 </body>
-
-
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const flashMessage = document.querySelector('.fixed.top-4');
+        if (flashMessage) {
+            setTimeout(() => {
+                flashMessage.style.opacity = '0';
+                setTimeout(() => flashMessage.remove(), 500); // Wait for transition
+            }, 3000); // Display for 3 seconds
+        }
+    });
+</script>
 </html>
