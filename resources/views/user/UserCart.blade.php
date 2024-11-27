@@ -9,6 +9,13 @@
 </head>
 
 <body class="bg-gray-50">
+    <!-- Flash message -->
+    @if (session('error'))
+        <div class="fixed top-4 left-1/2 transform -translate-x-1/2 bg-red-500 text-white px-4 py-2 rounded-lg shadow-md z-50">
+            {{ session('error') }}
+        </div>
+    @endif
+
     <x-navbar title="Carts" :user="auth()->user()" />
     <div class="max-w-5xl mx-auto p-4 space-y-4">
         @if ($cart)
@@ -30,7 +37,7 @@
                             class="bg-teal-500 text-white px-3 py-1 rounded-full text-sm hover:bg-teal-600 transition-colors duration-300 ease-in-out">
                             View
                         </a>
-                        <form action="{{ route('cart.remove', $product->id) }}" method="POST">
+                        <form action="{{ route('cart.remove_in_user_cart', $product->id) }}" method="POST">
                             @csrf
                             @method('DELETE')
                             <button type="submit"
