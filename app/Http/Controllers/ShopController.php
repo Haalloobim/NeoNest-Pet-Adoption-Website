@@ -31,7 +31,7 @@ class ShopController extends Controller
         $user->wishlist()->detach($product);
 
         return redirect()->route('product.details', ['product' => $product->id])
-            ->with('message', 'Product removed from wishlist');
+            ->with('error', 'Product removed from wishlist');
     }
 
     public function showWishlist()

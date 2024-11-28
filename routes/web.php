@@ -48,6 +48,7 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/cart/add/{product}', [CartController::class, 'addToCart'])->name('cart.add');
     Route::get('/checkout', [CartController::class, 'checkout'])->name('cart.checkout');
     Route::delete('/cart/remove/{product}', [CartController::class, 'removeCart'])->name('cart.remove');
+    Route::delete('/cart/remove_in_user_cart/{product}', [CartController::class, 'removeCart_in_user_cart'])->name('cart.remove_in_user_cart');
     Route::get('/cart', [CartController::class, 'showCart'])->name('cart.show');
 
     Route::get('/scanningPet', [ProductController::class, 'landing_page_for_scan_pet'])->name('scanningPet.show');

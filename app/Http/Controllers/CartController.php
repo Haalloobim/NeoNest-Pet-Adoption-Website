@@ -22,8 +22,16 @@ class CartController extends Controller
     {
         $user = User::find(Auth::id());
         $user->cart()->detach($product);
+        return redirect()->route('product.details', ['product' => $product->id])
+            ->with('error', 'Product removed from cart');
+    }
+
+    public function removeCart_in_user_cart(Product $product)
+    {
+        $user = User::find(Auth::id());
+        $user->cart()->detach($product);
         return redirect()->route('cart.show')
-            ->with('message', 'Product removed from cart');
+            ->with('error', 'Product removed from cart');
     }
 
     public function showCart()
@@ -41,7 +49,7 @@ class CartController extends Controller
     {
         $user = User::find(Auth::id());
         $cart = $user->cart;
-        
+
         if ($cart->count() == 0) {
             return view('user.UserCart', ['cart' => $cart, 'total' => 0]);
         }

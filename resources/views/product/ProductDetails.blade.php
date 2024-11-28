@@ -16,6 +16,20 @@
 </head>
 
 <body class="bg-gray-100 min-h-screen">
+
+    <!-- Flash Messages -->
+    @if (session('message'))
+        <div class="fixed top-4 left-1/2 transform -translate-x-1/2 bg-green-500 text-white px-4 py-2 rounded-lg shadow-md z-50">
+            {{ session('message') }}
+        </div>
+    @endif
+
+    @if (session('error'))
+        <div class="fixed top-4 left-1/2 transform -translate-x-1/2 bg-red-500 text-white px-4 py-2 rounded-lg shadow-md z-50">
+            {{ session('error') }}
+        </div>
+    @endif
+
     <!-- Navbar -->
     <x-navbar title="Product Details" />
 
@@ -32,7 +46,7 @@
                 <p class="text-xl text-slate-600 font-bold mt-1">Rp {{ number_format($product->price, 0, ',', '.') }}
                 </p>
                 <span
-                    class="inline-block mt-2 px-4 py-1 text-sm font-semibold text-white rounded-full 
+                    class="inline-block mt-2 px-4 py-1 text-sm font-semibold text-white rounded-full
         {{ $product->product_status === 'available' ? 'bg-gradient-to-r from-green-500 to-lime-600' : 'bg-gradient-to-r from-red-500 to-orange-500' }}">
                     {{ ucwords($product->product_status) }}
                 </span>
@@ -159,5 +173,15 @@
         </div>
     </div>
 </body>
-
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const flashMessage = document.querySelector('.fixed.top-4');
+        if (flashMessage) {
+            setTimeout(() => {
+                flashMessage.style.opacity = '0';
+                setTimeout(() => flashMessage.remove(), 500); // Wait for transition
+            }, 3000); // Display for 3 seconds
+        }
+    });
+</script>
 </html>
