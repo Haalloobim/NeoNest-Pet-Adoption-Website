@@ -15,9 +15,14 @@
                 <a href="/" class="text-2xl font-light tracking-widest text-black">
                     <img src="/images/logo.png" alt="" class="tracking-widest w-24 h-24">
                 </a>
-                <a href="/login" class="relative py-1.5 text-b before:absolute before:inset-0 before:origin-bottom before:scale-y-[.03] before:bg-white/60 before:transition before:duration-300 hover:before:scale-y-100 hover:before:scale-x-125 hover:before:bg-white/10">
-                    <span class="relative">Login</span>
-                </a>
+                <div class="flex items-center gap-6">
+                    <a href="/register" class="relative py-1.5 text-black before:absolute before:inset-0 before:origin-bottom before:scale-y-[.03] before:bg-white/60 before:transition before:duration-300 hover:before:scale-y-100 hover:before:scale-x-125 hover:before:bg-white/10">
+                        <span class="relative">Register</span>
+                    </a>
+                    <a href="/login" class="relative py-1.5 text-black before:absolute before:inset-0 before:origin-bottom before:scale-y-[.03] before:bg-white/60 before:transition before:duration-300 hover:before:scale-y-100 hover:before:scale-x-125 hover:before:bg-white/10">
+                        <span class="relative">Login</span>
+                    </a>
+                </div>
             </div>
         </nav>
     </header>
