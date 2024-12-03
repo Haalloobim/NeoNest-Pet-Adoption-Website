@@ -6,10 +6,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Neo Nest Landing Page</title>
     @vite('resources/css/app.css')
+
 </head>
 
 <body class="bg-white ">
     <header class="fixed top-0 z-20 w-full">
+        <div class="mx-auto max-w-8xl px-6 lg:px-12 xl:px-6 bg-gray-100 text-center">
+            <p class="text-lg font-light text-gray-700">
+                This website is a simulation created for a campus task. It does not facilitate real transactions.
+            </p>
+        </div>
         <nav class="2lg:px-12 mx-auto max-w-7xl px-6 py-12 lg:px-12 xl:px-6 2xl:px-0">
             <div class="flex items-center justify-between">
                 <a href="/" class="text-2xl font-light tracking-widest text-black">
