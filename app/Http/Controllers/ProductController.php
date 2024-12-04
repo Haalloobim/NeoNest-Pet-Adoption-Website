@@ -260,7 +260,7 @@ class ProductController extends Controller
             return view('Profile', compact('user', 'soldProducts'));
         }
         
-        dd($user);
+        // dd($user);
         $pets = $user->pets;
         // dd($pets);
         $ownedPets = []; 

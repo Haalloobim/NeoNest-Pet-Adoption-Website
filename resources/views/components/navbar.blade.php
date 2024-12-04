@@ -28,7 +28,7 @@
                 @if ($user && $user->role === 'seller')
                     <a href="{{ route('upload') }}" class="block px-4 py-2 text-gray-600 hover:bg-gray-100">Upload Product</a>
                 @elseif ($user && $user->role === 'user')
-                    <a href="#" class="block px-4 py-2 text-gray-600 hover:bg-gray-100">Scan Product</a>
+                    <a href="/scanningPet" class="block px-4 py-2 text-gray-600 hover:bg-gray-100">Scan Product</a>
                 @endif
                 
                 <a href="{{ route('profile') }}" class="block px-4 py-2 text-gray-600 hover:bg-gray-100">Account</a>

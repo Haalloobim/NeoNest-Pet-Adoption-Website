@@ -28,30 +28,38 @@
                     Upload Pet
                 </button>
             </form>
+            @if (!isset($data))
+                <div class="mt-8 space-y-4">
+                    <h3 class="text-xl font-semibold text-gray-700">How to Use</h3>
+                    <ol class="list-decimal list-inside space-y-4">
+                        <li class="flex items-start space-x-4">
+                            <img src="{{ asset('images/howto_step1.png') }}" alt="Step 1"
+                                class="w-20 h-20 rounded-lg border">
+                            <p class="text-gray-600">
+                                <strong>Step 1:</strong> Click on the "Choose File" button to select an image of your
+                                pet from your device.
+                            </p>
+                        </li>
+                        <li class="flex items-start space-x-4">
+                            <img src="{{ asset('images/howto_step2.png') }}" alt="Step 2"
+                                class="w-20 h-20 rounded-lg border">
+                            <p class="text-gray-600">
+                                <strong>Step 2:</strong> Ensure the image is clear and well-lit, then click on the
+                                "Upload Pet" button.
+                            </p>
+                        </li>
+                        <li class="flex items-start space-x-4">
+                            <img src="{{ asset('images/howto_step3.png') }}" alt="Step 3"
+                                class="w-20 h-20 rounded-lg border">
+                            <p class="text-gray-600">
+                                <strong>Step 3:</strong> Wait for the system to process the image and display the scan
+                                results.
+                            </p>
+                        </li>
+                    </ol>
+                </div>
+            @endif
 
-            <div class="mt-8 space-y-4">
-                <h3 class="text-xl font-semibold text-gray-700">How to Use</h3>
-                <ol class="list-decimal list-inside space-y-4">
-                    <li class="flex items-start space-x-4">
-                        <img src="{{ asset('images/howto_step1.png') }}" alt="Step 1" class="w-20 h-20 rounded-lg border">
-                        <p class="text-gray-600">
-                            <strong>Step 1:</strong> Click on the "Choose File" button to select an image of your pet from your device.
-                        </p>
-                    </li>
-                    <li class="flex items-start space-x-4">
-                        <img src="{{ asset('images/howto_step2.png') }}" alt="Step 2" class="w-20 h-20 rounded-lg border">
-                        <p class="text-gray-600">
-                            <strong>Step 2:</strong> Ensure the image is clear and well-lit, then click on the "Upload Pet" button.
-                        </p>
-                    </li>
-                    <li class="flex items-start space-x-4">
-                        <img src="{{ asset('images/howto_step3.png') }}" alt="Step 3" class="w-20 h-20 rounded-lg border">
-                        <p class="text-gray-600">
-                            <strong>Step 3:</strong> Wait for the system to process the image and display the scan results.
-                        </p>
-                    </li>
-                </ol>
-            </div>
 
 
             @isset($data)
@@ -80,15 +88,17 @@
                     @else
                         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 gap-6">
                             @foreach ($data['products'] as $product)
-                            <a href="{{ route('product.details', $product->id) }}" class="block">
-                                <div class="p-4 bg-gray-50 border border-gray-300 rounded-lg shadow-sm hover:shadow-xl hover:scale-[1.01] hover:-translate-y-[2px] transition-all duration-150 ease-in-out">
-                                    <img src="{{ asset('storage/' . $product->image_path) }}" alt="{{ $product->name }}"
-                                        class="w-full h-48 object-cover rounded-lg">
-                                    <h4 class="text-lg font-medium text-gray-800 mt-2">{{ $product->name }}</h4>
-                                    <p class="text-gray-600"><strong>Price:</strong> Rp {{ $product->price }}</p>
-                                    <p class="text-gray-600"><strong>Description:</strong> {{ $product->description }}</p>
-                                </div>
-                            </a>
+                                <a href="{{ route('product.details', $product->id) }}" class="block">
+                                    <div
+                                        class="p-4 bg-gray-50 border border-gray-300 rounded-lg shadow-sm hover:shadow-xl hover:scale-[1.01] hover:-translate-y-[2px] transition-all duration-150 ease-in-out">
+                                        <img src="{{ asset('storage/' . $product->image_path) }}" alt="{{ $product->name }}"
+                                            class="w-full h-48 object-cover rounded-lg">
+                                        <h4 class="text-lg font-medium text-gray-800 mt-2">{{ $product->name }}</h4>
+                                        <p class="text-gray-600"><strong>Price:</strong> Rp {{ $product->price }}</p>
+                                        <p class="text-gray-600"><strong>Description:</strong> {{ $product->description }}
+                                        </p>
+                                    </div>
+                                </a>
                             @endforeach
                         </div>
                     @endif
