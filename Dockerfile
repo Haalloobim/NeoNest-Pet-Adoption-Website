@@ -12,7 +12,7 @@ RUN apk update && \
 COPY . /var/www/html/
 WORKDIR /var/www/html
 
-COPY .env.example /var/www/html/.env
+RUN [ ! -f .env ] && cp .env.example .env || echo ".env already exists"
 
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
